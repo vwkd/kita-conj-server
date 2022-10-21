@@ -1,0 +1,34 @@
+type Query {
+  entry(id: ID!): Entry
+}
+
+type Entry {
+  id: ID!
+  value: Value!
+}
+
+type Value {
+  PRS: PRS!
+}
+
+type PRS {
+  S1: SubjectS1!
+}
+
+type SubjectS1 {
+  person1: Person1!
+  root: Root!
+  person2: Person2!
+}
+
+type Person1 {
+  value: String!
+}
+
+type Root {
+  value: String!
+}
+
+type Person2 {
+  value: String!
+}
