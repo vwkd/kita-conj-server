@@ -43,7 +43,7 @@ const person2Type = new GraphQLObjectType({
 });
 
 const subjectS1Type = new GraphQLObjectType({
-  name: "PRS",
+  name: "SubjectS1",
   fields: {
     // todo: add object persons, add other verb form components
     person1: {
@@ -51,9 +51,6 @@ const subjectS1Type = new GraphQLObjectType({
     },
     root: {
       type: new GraphQLNonNull(rootType),
-    },
-    thema: {
-      type: new GraphQLNonNull(themaType),
     },
     person2: {
       type: new GraphQLNonNull(person2Type),
