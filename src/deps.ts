@@ -7,27 +7,27 @@ const entry = {
     PRS: {
       S1: {
         preverb: {
-          key: "preverb",
+          label: "preverb",
           value: null,
         },
         person1: {
-          key: "person1",
+          label: "person1",
           value: "ვ",
         },
         version: {
-          key: "version",
+          label: "version",
           value: "ა",
         },
         root: {
-          key: "root",
+          label: "root",
           value: "კეთ",
         },
         thema: {
-          key: "thema",
+          label: "thema",
           value: "ებ",
         },
         person2: {
-          key: "person2",
+          label: "person2",
           value: null,
         },
       },

@@ -18,7 +18,7 @@ async function entryResolver(_, { id }) {
 const componentType = new GraphQLObjectType({
   name: "Component",
   fields: {
-    key: {
+    label: {
       type: new GraphQLNonNull(GraphQLString),
     },
     value: {
