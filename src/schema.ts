@@ -22,7 +22,7 @@ const componentType = new GraphQLObjectType({
       type: new GraphQLNonNull(GraphQLString),
     },
     value: {
-      type: new GraphQLNonNull(GraphQLString),
+      type: GraphQLString,
     },
   }
 });
