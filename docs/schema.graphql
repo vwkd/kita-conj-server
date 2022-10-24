@@ -4,31 +4,42 @@ type Query {
 
 type Entry {
   id: ID!
-  value: Value!
+  value: Table!
 }
 
-type Value {
-  PRS: PRS!
+type Table {
+  PRS: Screeve!
+  IMPF: Screeve!
+  PRSSUBJ: Screeve!
+  FUT: Screeve!
+  COND: Screeve!
+  FUTSUBJ: Screeve!
+  AOR: Screeve!
+  OPT: Screeve!
+  PERF: Screeve!
+  PLUPERF: Screeve!
+  PERFSUBJ: Screeve!
 }
 
-type PRS {
-  S1: SubjectS1!
+type Screeve {
+  S1: Form!
+  S2: Form!
+  S3: Form!
+  P1: Form!
+  P2: Form!
+  P3: Form!
 }
 
-type SubjectS1 {
-  person1: Person1!
-  root: Root!
-  person2: Person2!
+type Form {
+  preverb: Component!
+  person1: Component!
+  version: Component!
+  root: Component!
+  thema: Component!
+  person2: Component!
 }
 
-type Person1 {
-  value: String!
-}
-
-type Root {
-  value: String!
-}
-
-type Person2 {
+type Component {
+  key: String!
   value: String!
 }
