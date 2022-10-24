@@ -9,12 +9,15 @@ export const entries = [
       PRS: {
         S1: {
           person1: {
+            label: "person1",
             value: "ვ",
           },
           root: {
+            label: "root",
             value: "წერ",
           },
           person2: {
+            label: "person2",
             value: "თ",
           },
         }

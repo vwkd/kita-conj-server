@@ -18,6 +18,9 @@ function entryResolver(_, { id }) {
 const person1Type = new GraphQLObjectType({
   name: "Person1",
   fields: {
+    label: {
+      type: new GraphQLNonNull(GraphQLString),
+    },
     value: {
       type: new GraphQLNonNull(GraphQLString),
     },
@@ -27,6 +30,9 @@ const person1Type = new GraphQLObjectType({
 const rootType = new GraphQLObjectType({
   name: "Root",
   fields: {
+    key: {
+      type: new GraphQLNonNull(GraphQLString),
+    },
     value: {
       type: new GraphQLNonNull(GraphQLString),
     },
@@ -36,6 +42,9 @@ const rootType = new GraphQLObjectType({
 const person2Type = new GraphQLObjectType({
   name: "Person2",
   fields: {
+    key: {
+      type: new GraphQLNonNull(GraphQLString),
+    },
     value: {
       type: new GraphQLNonNull(GraphQLString),
     },

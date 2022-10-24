@@ -22,13 +22,16 @@ type SubjectS1 {
 }
 
 type Person1 {
+  label: String!
   value: String!
 }
 
 type Root {
+  label: String!
   value: String!
 }
 
 type Person2 {
+  label: String!
   value: String!
 }
