@@ -15,79 +15,106 @@ function entryResolver(_, { id }) {
 
 // BEWARE: definitions must be in order from leaf types all the way up to root type
 
-const person1Type = new GraphQLObjectType({
-  name: "Person1",
+const componentType = new GraphQLObjectType({
+  name: "Component",
   fields: {
     label: {
       type: new GraphQLNonNull(GraphQLString),
     },
     value: {
-      type: new GraphQLNonNull(GraphQLString),
+      type: GraphQLString,
     },
   }
 });
 
-const rootType = new GraphQLObjectType({
-  name: "Root",
-  fields: {
-    key: {
-      type: new GraphQLNonNull(GraphQLString),
-    },
-    value: {
-      type: new GraphQLNonNull(GraphQLString),
-    },
-  }
-});
-
-const person2Type = new GraphQLObjectType({
-  name: "Person2",
-  fields: {
-    key: {
-      type: new GraphQLNonNull(GraphQLString),
-    },
-    value: {
-      type: new GraphQLNonNull(GraphQLString),
-    },
-  }
-});
-
-const subjectS1Type = new GraphQLObjectType({
-  name: "SubjectS1",
+const formType = new GraphQLObjectType({
+  name: "Form",
   fields: {
     // todo: add object persons, add other verb form components
+    preverb: {
+      type: new GraphQLNonNull(componentType),
+    },
     person1: {
-      type: new GraphQLNonNull(person1Type),
+      type: new GraphQLNonNull(componentType),
+    },
+    version: {
+      type: new GraphQLNonNull(componentType),
     },
     root: {
-      type: new GraphQLNonNull(rootType),
+      type: new GraphQLNonNull(componentType),
+    },
+    thema: {
+      type: new GraphQLNonNull(componentType),
     },
     person2: {
-      type: new GraphQLNonNull(person2Type),
+      type: new GraphQLNonNull(componentType),
     },
   }
 });
 
-const presentType = new GraphQLObjectType({
-  name: "PRS",
+const screeveType = new GraphQLObjectType({
+  name: "Screeve",
   fields: {
-    // todo: add other subject persons
     S1: {
-      type: new GraphQLNonNull(subjectS1Type),
+      type: new GraphQLNonNull(formType),
+    },
+    S2: {
+      type: new GraphQLNonNull(formType),
+    },
+    S3: {
+      type: new GraphQLNonNull(formType),
+    },
+    P1: {
+      type: new GraphQLNonNull(formType),
+    },
+    P2: {
+      type: new GraphQLNonNull(formType),
+    },
+    P3: {
+      type: new GraphQLNonNull(formType),
     },
   }
 });
 
-
-const valueType = new GraphQLObjectType({
-  name: "Value",
+const tableType = new GraphQLObjectType({
+  name: "Table",
   fields: {
-    // todo: add series and groups, add other screeves
+    // todo: add more screeves, e.g. imperfect and perfect, INF, etc.
     PRS: {
-      type: new GraphQLNonNull(presentType),
+      type: new GraphQLNonNull(screeveType),
+    },
+    IMPF: {
+      type: new GraphQLNonNull(screeveType),
+    },
+    PRSSUBJ: {
+      type: new GraphQLNonNull(screeveType),
+    },
+    FUT: {
+      type: new GraphQLNonNull(screeveType),
+    },
+    COND: {
+      type: new GraphQLNonNull(screeveType),
+    },
+    FUTSUBJ: {
+      type: new GraphQLNonNull(screeveType),
+    },
+    AOR: {
+      type: new GraphQLNonNull(screeveType),
+    },
+    OPT: {
+      type: new GraphQLNonNull(screeveType),
+    },
+    PERF: {
+      type: new GraphQLNonNull(screeveType),
+    },
+    PLUPERF: {
+      type: new GraphQLNonNull(screeveType),
+    },
+    PERFSUBJ: {
+      type: new GraphQLNonNull(screeveType),
     },
   }
 });
-
 
 const entryType = new GraphQLObjectType({
   name: "Entry",
@@ -96,7 +123,7 @@ const entryType = new GraphQLObjectType({
       type: new GraphQLNonNull(GraphQLID),
     },
     value: {
-      type: new GraphQLNonNull(valueType),
+      type: new GraphQLNonNull(tableType),
     },
   }
 });
