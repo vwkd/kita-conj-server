@@ -41,5 +41,5 @@ type Form {
 
 type Component {
   key: String!
-  value: String!
+  value: String
 }
