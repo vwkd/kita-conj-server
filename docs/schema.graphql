@@ -40,6 +40,6 @@ type Form {
 }
 
 type Component {
-  key: String!
+  label: String!
   value: String
 }
