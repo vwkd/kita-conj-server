@@ -79,7 +79,6 @@ const screeveType = new GraphQLObjectType({
 const tableType = new GraphQLObjectType({
   name: "Table",
   fields: {
-    // todo: add more screeves, e.g. imperfect and perfect, INF, etc.
     PRS: {
       type: new GraphQLNonNull(screeveType),
     },
@@ -101,16 +100,37 @@ const tableType = new GraphQLObjectType({
     AOR: {
       type: new GraphQLNonNull(screeveType),
     },
+    AORIMPF: {
+      type: new GraphQLNonNull(screeveType),
+    },
     OPT: {
+      type: new GraphQLNonNull(screeveType),
+    },
+    OPTIMPF: {
       type: new GraphQLNonNull(screeveType),
     },
     PERF: {
       type: new GraphQLNonNull(screeveType),
     },
+    PERFIMPF: {
+      type: new GraphQLNonNull(screeveType),
+    },
     PLUPERF: {
       type: new GraphQLNonNull(screeveType),
     },
+    PLUPERFIMPF: {
+      type: new GraphQLNonNull(screeveType),
+    },
     PERFSUBJ: {
+      type: new GraphQLNonNull(screeveType),
+    },
+    PERFSUBJIMPF: {
+      type: new GraphQLNonNull(screeveType),
+    },
+    INF: {
+      type: new GraphQLNonNull(screeveType),
+    },
+    INFIMPF: {
       type: new GraphQLNonNull(screeveType),
     },
   }
