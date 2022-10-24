@@ -31,136 +31,11 @@ const entry = {
           value: null,
         },
       },
-      S2: {
-        preverb: {
-          key: "preverb",
-          value: null,
-        },
-        person1: {
-          key: "person1",
-          value: null,
-        },
-        version: {
-          key: "version",
-          value: "ა",
-        },
-        root: {
-          key: "root",
-          value: "კეთ",
-        },
-        thema: {
-          key: "thema",
-          value: "ებ",
-        },
-        person2: {
-          key: "person2",
-          value: null,
-        },
-      },
-      S3: {
-        preverb: {
-          key: "preverb",
-          value: null,
-        },
-        person1: {
-          key: "person1",
-          value: null,
-        },
-        version: {
-          key: "version",
-          value: "ა",
-        },
-        root: {
-          key: "root",
-          value: "კეთ",
-        },
-        thema: {
-          key: "thema",
-          value: "ებ",
-        },
-        person2: {
-          key: "person2",
-          value: "ს",
-        },
-      },
-      P1: {
-        preverb: {
-          key: "preverb",
-          value: null,
-        },
-        person1: {
-          key: "person1",
-          value: "ვ",
-        },
-        version: {
-          key: "version",
-          value: "ა",
-        },
-        root: {
-          key: "root",
-          value: "კეთ",
-        },
-        thema: {
-          key: "thema",
-          value: "ებ",
-        },
-        person2: {
-          key: "person2",
-          value: "თ",
-        },
-      },
-      P2: {
-        preverb: {
-          key: "preverb",
-          value: null,
-        },
-        person1: {
-          key: "person1",
-          value: null,
-        },
-        version: {
-          key: "version",
-          value: "ა",
-        },
-        root: {
-          key: "root",
-          value: "კეთ",
-        },
-        thema: {
-          key: "thema",
-          value: "ებ",
-        },
-        person2: {
-          key: "person2",
-          value: "თ",
-        },
-      },
-      P3: {
-        preverb: {
-          key: "preverb",
-          value: null,
-        },
-        person1: {
-          key: "person1",
-          value: null,
-        },
-        version: {
-          key: "version",
-          value: "ა",
-        },
-        root: {
-          key: "root",
-          value: "კეთ",
-        },
-        thema: {
-          key: "thema",
-          value: "ებ",
-        },
-        person2: {
-          key: "person2",
-          value: "ენ",
-        },
-      },
+      S2: null,
+      S3: null,
+      P1: null,
+      P2: null,
+      P3: null,
     },
     IMPF: null,
     PRSSUBJ: null,
@@ -175,8 +50,14 @@ const entry = {
   }
 };
 
-// hacked fill of other screeves with PRS
-Object.values(entry.value).map(_ => entry.value.PRS);
+// hack: fill with placeholder, screeves with PRS, forms with S1
+for (const key in entry.value.PRS) {
+  entry.value.PRS[key] = entry.value.PRS.S1;
+}
+
+for (const key in entry.value) {
+  entry.value[key] = entry.value.PRS;
+}
 
 export const entries = [
   entry
