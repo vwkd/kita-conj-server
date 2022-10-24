@@ -15,10 +15,17 @@ type Table {
   COND: Screeve!
   FUTSUBJ: Screeve!
   AOR: Screeve!
+  AORIMPF: Screeve!
   OPT: Screeve!
+  OPTIMPF: Screeve!
   PERF: Screeve!
+  PERFIMPF: Screeve!
   PLUPERF: Screeve!
+  PLUPERFIMPF: Screeve!
   PERFSUBJ: Screeve!
+  PERFSUBJIMPF: Screeve!
+  INF: Screeve!
+  INFIMPF: Screeve!  
 }
 
 type Screeve {

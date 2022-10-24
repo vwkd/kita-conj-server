@@ -44,10 +44,17 @@ const entry = {
     COND: null,
     FUTSUBJ: null,
     AOR: null,
+    AORIMPF: null,
     OPT: null,
+    OPTIMPF: null,
     PERF: null,
+    PERFIMPF: null,
     PLUPERF: null,
+    PLUPERFIMPF: null,
     PERFSUBJ: null,
+    PERFSUBJIMPF: null,
+    INF: null,
+    INFIMPF: null,
   }
 };
 
