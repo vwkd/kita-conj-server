@@ -8,27 +8,55 @@ type Entry {
 }
 
 type Table {
+  SRS1: SRS1!
+  SRS2: SRS2!
+  SRS3: SRS3!
+  IMP: IMP!
+  INF: INF!
+}
+
+type SRS1 {
+  GRP1: GRP1!
+  GRP2: GRP2!
+}
+
+type GRP1 {
   PRS: Screeve!
   IMPF: Screeve!
   PRSSUBJ: Screeve!
+}
+
+type GRP2 {
   FUT: Screeve!
   COND: Screeve!
   FUTSUBJ: Screeve!
+}
+
+type SRS2 {
   AOR: Screeve!
   AORIMPF: Screeve!
   OPT: Screeve!
   OPTIMPF: Screeve!
+}
+
+type SRS3 {
   PERF: Screeve!
   PERFIMPF: Screeve!
   PLUPERF: Screeve!
   PLUPERFIMPF: Screeve!
   PERFSUBJ: Screeve!
   PERFSUBJIMPF: Screeve!
+}
+
+type IMP {
   IMPAFF: Screeve!
   IMPAFFIMPF: Screeve!
   IMPPRB1: Screeve!
   IMPPRB1IMPF: Screeve!
   IMPPRB2: Screeve!
+}
+
+type INF {
   INF: Screeve!
   INFIMPF: Screeve!  
 }

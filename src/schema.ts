@@ -76,8 +76,8 @@ const screeveType = new GraphQLObjectType({
   }
 });
 
-const tableType = new GraphQLObjectType({
-  name: "Table",
+const GRP1Type = new GraphQLObjectType({
+  name: "GRP1",
   fields: {
     PRS: {
       type: new GraphQLNonNull(screeveType),
@@ -88,6 +88,12 @@ const tableType = new GraphQLObjectType({
     PRSSUBJ: {
       type: new GraphQLNonNull(screeveType),
     },
+  }
+});
+
+const GRP2Type = new GraphQLObjectType({
+  name: "GRP2",
+  fields: {
     FUT: {
       type: new GraphQLNonNull(screeveType),
     },
@@ -97,6 +103,24 @@ const tableType = new GraphQLObjectType({
     FUTSUBJ: {
       type: new GraphQLNonNull(screeveType),
     },
+  }
+});
+
+const SRS1Type = new GraphQLObjectType({
+  name: "SRS1",
+  fields: {
+    GRP1: {
+      type: new GraphQLNonNull(GRP1Type),
+    },
+    GRP2: {
+      type: new GraphQLNonNull(GRP2Type),
+    },
+  }
+});
+
+const SRS2Type = new GraphQLObjectType({
+  name: "SRS2",
+  fields: {
     AOR: {
       type: new GraphQLNonNull(screeveType),
     },
@@ -109,6 +133,12 @@ const tableType = new GraphQLObjectType({
     OPTIMPF: {
       type: new GraphQLNonNull(screeveType),
     },
+  }
+});
+
+const SRS3Type = new GraphQLObjectType({
+  name: "SRS3",
+  fields: {
     PERF: {
       type: new GraphQLNonNull(screeveType),
     },
@@ -127,6 +157,12 @@ const tableType = new GraphQLObjectType({
     PERFSUBJIMPF: {
       type: new GraphQLNonNull(screeveType),
     },
+  }
+});
+
+const IMPType = new GraphQLObjectType({
+  name: "IMP",
+  fields: {
     IMPAFF: {
       type: new GraphQLNonNull(screeveType),
     },
@@ -142,11 +178,38 @@ const tableType = new GraphQLObjectType({
     IMPPRB2: {
       type: new GraphQLNonNull(screeveType),
     },
+  }
+});
+
+const INFType = new GraphQLObjectType({
+  name: "INF",
+  fields: {
     INF: {
       type: new GraphQLNonNull(screeveType),
     },
     INFIMPF: {
       type: new GraphQLNonNull(screeveType),
+    },
+  }
+});
+
+const tableType = new GraphQLObjectType({
+  name: "Table",
+  fields: {
+    SRS1: {
+      type: new GraphQLNonNull(SRS1Type),
+    },
+    SRS2: {
+      type: new GraphQLNonNull(SRS2Type),
+    },
+    SRS3: {
+      type: new GraphQLNonNull(SRS3Type),
+    },
+    IMP: {
+      type: new GraphQLNonNull(IMPType),
+    },
+    INF: {
+      type: new GraphQLNonNull(INFType),
     },
   }
 });
