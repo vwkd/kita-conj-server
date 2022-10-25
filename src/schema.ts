@@ -127,6 +127,21 @@ const tableType = new GraphQLObjectType({
     PERFSUBJIMPF: {
       type: new GraphQLNonNull(screeveType),
     },
+    IMPAFF: {
+      type: new GraphQLNonNull(screeveType),
+    },
+    IMPAFFIMPF: {
+      type: new GraphQLNonNull(screeveType),
+    },
+    IMPPRB1: {
+      type: new GraphQLNonNull(screeveType),
+    },
+    IMPPRB1IMPF: {
+      type: new GraphQLNonNull(screeveType),
+    },
+    IMPPRB2: {
+      type: new GraphQLNonNull(screeveType),
+    },
     INF: {
       type: new GraphQLNonNull(screeveType),
     },
