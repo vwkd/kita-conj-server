@@ -32,6 +32,11 @@ function getTable(args) {
   const PLUPERFIMPF = PRS;
   const PERFSUBJ = PRS;
   const PERFSUBJIMPF = PRS;
+  const IMPAFF = PRS;
+  const IMPAFFIMPF = PRS;
+  const IMPPRB1 = PRS;
+  const IMPPRB1IMPF = PRS;
+  const IMPPRB2 = PRS;
   const INF = PRS;
   const INFIMPF = PRS;
   
@@ -52,6 +57,11 @@ function getTable(args) {
     PLUPERFIMPF,
     PERFSUBJ,
     PERFSUBJIMPF,
+    IMPAFF,
+    IMPAFFIMPF,
+    IMPPRB1,
+    IMPPRB1IMPF,
+    IMPPRB2,
     INF,
     INFIMPF,
   };

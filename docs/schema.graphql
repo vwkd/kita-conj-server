@@ -24,6 +24,11 @@ type Table {
   PLUPERFIMPF: Screeve!
   PERFSUBJ: Screeve!
   PERFSUBJIMPF: Screeve!
+  IMPAFF: Screeve!
+  IMPAFFIMPF: Screeve!
+  IMPPRB1: Screeve!
+  IMPPRB1IMPF: Screeve!
+  IMPPRB2: Screeve!
   INF: Screeve!
   INFIMPF: Screeve!  
 }
