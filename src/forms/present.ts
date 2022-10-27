@@ -1,4 +1,4 @@
-import { select_version, error } from "./utils.ts";
+import { error, Form } from "./utils.ts";
 
 function select_pz_s({ root, thema }, person_s_selected) {
   const stem = thema ? root + thema : root;
@@ -38,16 +38,11 @@ function select_pz_s({ root, thema }, person_s_selected) {
 
 export default function getPRS({ version, root, thema }, person_s_selected) {
   
-  const version_vocal = select_version({ version });
+  const preverb = null;
   
   const { person1, person2 } = select_pz_s({ root, thema }, person_s_selected);
   
-  return {
-    preverb: null,
-    person1,
-    version: version_vocal,
-    root,
-    thema,
-    person2,
-  };
+  const form = Form({ person1, version, root, thema, person2 });
+  
+  return form;
 }
