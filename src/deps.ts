@@ -9,5 +9,6 @@ export const definitions = [
     "version": "NEUTRAL2",
     "root": "კეთ",
     "thema": "ებ",
+    "exceptions": {},
   },
 ];
