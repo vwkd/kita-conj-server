@@ -4,9 +4,9 @@ import getFormPresent from "./forms/present.ts";
 export const entries = definitions.map(d => generate(d));
 
 // todo: validate preverb, version, root, thema
-function generate({ id, preverb, version, root, thema }) {
-
-  const value = getTable({ preverb, version, root, thema });
+function generate({ id, ...args }) {
+  
+  const value = getTable(args);
   
   return {
     id,
@@ -134,12 +134,12 @@ function getINF(args) {
 }
 
 function getScreeve(args, getForm) {
-  const S1 = wrapComponent(getForm(args, "S1"));
-  const S2 = wrapComponent(getForm(args, "S2"));
-  const S3 = wrapComponent(getForm(args, "S3"));
-  const P1 = wrapComponent(getForm(args, "P1"));
-  const P2 = wrapComponent(getForm(args, "P2"));
-  const P3 = wrapComponent(getForm(args, "P3"));
+  const S1 = getForm(args, "S1");
+  const S2 = getForm(args, "S2");
+  const S3 = getForm(args, "S3");
+  const P1 = getForm(args, "P1");
+  const P2 = getForm(args, "P2");
+  const P3 = getForm(args, "P3");
   
   return {
     S1,
@@ -148,23 +148,5 @@ function getScreeve(args, getForm) {
     P1,
     P2,
     P3,
-  };
-}
-
-function wrapComponent({ preverb, person1, version, root, thema, person2 }) {
-  return {
-    preverb: getComponent("preverb", preverb),
-    person1: getComponent("person1", person1),
-    version: getComponent("version", version),
-    root: getComponent("root", root),
-    thema: getComponent("thema", thema),
-    person2: getComponent("person2", person2),
-  };
-}
-
-function getComponent(label, value) {
-  return {
-    label,
-    value,
   };
 }

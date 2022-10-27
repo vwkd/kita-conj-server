@@ -24,6 +24,12 @@ const componentType = new GraphQLObjectType({
     value: {
       type: GraphQLString,
     },
+    isException: {
+      type: new GraphQLNonNull(GraphQLBoolean),
+    },
+    note: {
+      type: GraphQLString,
+    },
   }
 });
 
