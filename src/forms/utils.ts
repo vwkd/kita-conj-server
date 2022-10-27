@@ -19,67 +19,68 @@ export function error(msg) {
   throw new Error(msg);
 }
 
-// args is { preverb, person1, version, root, thema, person2 }
-// beware: assumes args to constructor and set are validated!
-export function Form(args) {
+export function Form() {
   const preverb = {
     label: "preverb",
-    value: args.preverb,
-    isException: false,
-    note: null,
   };
   
   const person1 = {
     label: "person1",
-    value: args.person1,
-    isException: false,
-    note: null,
   };
   
   const version = {
     label: "version",
-    value: args.version,
-    isException: false,
-    note: null,
   };
   
   const root = {
     label: "root",
-    value: args.root,
-    isException: false,
-    note: null,
   };
   
   const thema = {
     label: "thema",
-    value: args.thema,
-    isException: false,
-    note: null,
   };
   
   const person2 = {
     label: "person2",
-    value: args.person2,
-    isException: false,
-    note: null,
   };
   
   return {
     get preverb() {
       return preverb;
     },
-    set preverb({ value, note }) {
+    set preverb(value) {
+      validatePreverb(value);
       preverb.value = value;
-      preverb.isException = true;
-      preverb.note = note;
+      preverb.isException = false;
+      preverb.note = null;
+    },
+    set preverbExc(patch) {
+      if (patch) {
+        const { value, note } = patch;
+        validatePreverb(value);
+        validateNote(note);
+        preverb.value = value;
+        preverb.isException = true;
+        preverb.note = note;
+      }
     },
     get person1() {
       return person1;
     },
-    set person1({ value, note }) {
+    set person1(value) {
+      validatePerson(value);
       person1.value = value;
-      person1.isException = true;
-      person1.note = note;
+      person1.isException = false;
+      person1.note = null;
+    },
+    set person1Exc(patch) {
+      if (patch) {
+        const { value, note } = patch;
+        validatePerson(value);
+        person1.value = value;
+        person1.isException = true;
+        person1.note = note;
+      }
     },
     get version() {
       return {
@@ -90,114 +91,140 @@ export function Form(args) {
     get versionRaw() {
       return version;
     },
-    set version({ value, note }) {
+    set version(value) {
+      validateVersion(value);
       version.value = value;
-      version.isException = true;
-      version.note = note;
+      version.isException = false;
+      version.note = null;
+    },
+    set versionExc(patch) {
+      if (patch) {
+        const { value, note } = patch;
+        validateVersion(value);
+        validateNote(note);
+        version.value = value;
+        version.isException = true;
+        version.note = note;
+      }
     },
     get root() {
       return root;
     },
-    set root({ value, note }) {
+    set root(value) {
+      validateRoot(value);
       root.value = value;
-      root.isException = true;
-      root.note = note;
+      root.isException = false;
+      root.note = null;
+    },
+    set rootExc(patch) {
+      if (patch) {
+        const { value, note } = patch;
+        validateRoot(value);
+        validateNote(note);
+        root.value = value;
+        root.isException = true;
+        root.note = note;
+      }
     },
     get thema() {
       return thema;
     },
-    set thema({ value, note }) {
+    set thema(value) {
+      validateThema(value);
       thema.value = value;
-      thema.isException = true;
-      thema.note = note;
+      thema.isException = false;
+      thema.note = null;
+    },
+    set themaExc(patch) {
+      if (patch) {
+        const { value, note } = patch;
+        validateThema(value);
+        validateNote(note);
+        thema.value = value;
+        thema.isException = true;
+        thema.note = note;
+      }
     },
     get person2() {
       return person2;
     },
-    set person2({ value, note }) {
+    set person2(value) {
+      validatePerson(value);
       person2.value = value;
-      person2.isException = true;
-      person2.note = note;
+      person2.isException = false;
+      person2.note = null;
+    },
+    set person2Exc(patch) {
+      if (patch) {
+        const { value, note } = patch;
+        validatePerson(value);
+        person2.value = value;
+        person2.isException = true;
+        person2.note = note;
+      }
+    },
+    get stemValue() {
+      return [version.value, root.value, thema.value].filter(Boolean).join("");
     },
   };
 }
 
-export function validateArgs({ preverb, version, root, thema }) {
-  validatePreverb(preverb);
-  validateVersion(version);
-  validateRoot(root);
-  validateThema(thema);
-}
-
-export function validateExceptions({ preverb, version, root, thema } = {}) {
-  if (preverb) {
-    validatePreverb(preverb.value);
-    validateNote(preverb.note);
-  }
-  
-  if (version) {
-    validateVersion(version.value);
-    validateNote(version.note);
-  }
-  
-  if (root) {
-    validateRoot(root.value);
-    validateNote(root.note);
-  }
-  
-  if (thema) {
-    validateThema(thema.value);
-    validateNote(thema.note);
-  }
-}
-
-
-export function validatePreverb(preverb) {
-  if (typeof preverb != "string" && preverb !== null) {
+function validatePreverb(value) {
+  if (typeof value != "string" && value !== null) {
     throw new Error("preverb must be a string or null");
   }
   
-  if (!PREVERB.some(p => p == preverb)) {
+  if (!PREVERB.some(p => p == value)) {
     throw new Error(`preverb must be one of '${PREVERB.join("', '")}'`);
   }
 }
 
-export function validateVersion(version) {
-  if (typeof version != "string") {
+function validateVersion(value) {
+  if (typeof value != "string") {
     throw new Error("version must be a string");
   }
   
-  if (!VERSION.some(v => v == version)) {
+  if (!VERSION.some(v => v == value)) {
     throw new Error(`version must be one of '${VERSION.join("', '")}'`);
   }
 }
 
-export function validateRoot(root) {
-  if (typeof root != "string") {
+function validateRoot(value) {
+  if (typeof value != "string") {
     throw new Error("root must be a string");
   }
   
-  if (!root) {
+  if (value == "") {
     throw new Error("root must not be empty");
   }
 }
 
-export function validateThema(thema) {
-  if (typeof thema != "string" && thema !== null) {
+function validateThema(value) {
+  if (typeof value != "string" && value !== null) {
     throw new Error("thema must be a string or null");
   }
   
-  if (!THEMA.some(t => t == thema)) {
+  if (!THEMA.some(t => t == value)) {
     throw new Error(`thema must be one of '${THEMA.join("', '")}'`);
   }
 }
 
-export function validateNote(note) {
-  if (typeof note != "string") {
+function validatePerson(value) {
+  if (typeof value != "string" && value !== null) {
+    throw new Error("person must be a string or null");
+  }
+  
+  if (value === "") {
+    throw new Error("person must not be empty");
+  }
+}
+
+function validateNote(value) {
+  if (typeof value != "string") {
     throw new Error("note must be a string");
   }
   
-  if (!note) {
+  if (value == "") {
     throw new Error("note must not be empty");
   }
 }
