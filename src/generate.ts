@@ -4,9 +4,9 @@ import getFormPresent from "./forms/present.ts";
 export const entries = definitions.map(d => generate(d));
 
 // todo: validate preverb, version, root, thema
-function generate({ id, ...args }) {
+function generate({ id, exceptions, ...args }) {
   
-  const value = getTable(args);
+  const value = getTable(args, exceptions);
   
   return {
     id,
@@ -14,12 +14,21 @@ function generate({ id, ...args }) {
   };
 }
 
-function getTable(args) {
-  const SRS1 = getSRS1(args);
-  const SRS2 = getSRS2(args);
-  const SRS3 = getSRS3(args);
-  const INF = getINF(args);
-  const IMP = getIMP(args);
+function getTable(args, { person1, version, root, thema, person2, ...children }) {
+  const exceptionsSRS1 = { person1, version, root, thema, person2, ...children?.SRS1 };
+  const SRS1 = getSRS1(args, exceptionsSRS1);
+  
+  const exceptionsSRS2 = { person1, version, root, thema, person2, ...children?.SRS2 };
+  const SRS2 = getSRS2(args, exceptionsSRS2);
+  
+  const exceptionsSRS3 = { person1, version, root, thema, person2, ...children?.SRS3 };
+  const SRS3 = getSRS3(args, exceptionsSRS3);
+  
+  const exceptionsINF = { person1, version, root, thema, person2, ...children?.INF };
+  const INF = getINF(args, exceptionsINF);
+  
+  const exceptionsIMP = { person1, version, root, thema, person2, ...children?.IMP };
+  const IMP = getIMP(args, exceptionsIMP);
   
   return {
     SRS1,
@@ -30,8 +39,9 @@ function getTable(args) {
   };
 }
 
-function getGRP1(args) {
-  const PRS = getScreeve(args, getFormPresent);
+function getGRP1(args, { person1, version, root, thema, person2, ...children }) {
+  const exceptionsPRS = { person1, version, root, thema, person2, ...children?.PRS };
+  const PRS = getScreeve(args, exceptionsPRS, getFormPresent);
   // todo: placeholder, fill with actual screeves
   const IMPF = PRS;
   const PRSSUBJ = PRS;
@@ -43,8 +53,8 @@ function getGRP1(args) {
   };
 }
 
-function getGRP2(args) {
-  const PRS = getScreeve(args, getFormPresent);
+function getGRP2(args, { person1, version, root, thema, person2, ...children }) {
+  const PRS = getScreeve(args, {}, getFormPresent);
   // todo: placeholder, fill with actual screeves
   const FUT = PRS;
   const COND = PRS;
@@ -57,9 +67,12 @@ function getGRP2(args) {
   };
 }
 
-function getSRS1(args) {
-  const GRP1 = getGRP1(args);
-  const GRP2 = getGRP2(args);
+function getSRS1(args, { person1, version, root, thema, person2, ...children }) {
+  const exceptionsGRP1 = { person1, version, root, thema, person2, ...children?.GRP1 };
+  const GRP1 = getGRP1(args, exceptionsGRP1);
+  
+  const exceptionsGRP2 = { person1, version, root, thema, person2, ...children?.GRP2 };
+  const GRP2 = getGRP2(args, exceptionsGRP2);
   
   return {
     GRP1,
@@ -67,8 +80,8 @@ function getSRS1(args) {
   };
 }
 
-function getSRS2(args) {
-  const PRS = getScreeve(args, getFormPresent);
+function getSRS2(args, { person1, version, root, thema, person2, ...children }) {
+  const PRS = getScreeve(args, {}, getFormPresent);
   // todo: placeholder, fill with actual screeves
   const AOR = PRS;
   const AORIMPF = PRS;
@@ -83,8 +96,8 @@ function getSRS2(args) {
   };
 }
 
-function getSRS3(args) {
-  const PRS = getScreeve(args, getFormPresent);
+function getSRS3(args, { person1, version, root, thema, person2, ...children }) {
+  const PRS = getScreeve(args, {}, getFormPresent);
   // todo: placeholder, fill with actual screeves
   const PERF = PRS;
   const PERFIMPF = PRS;
@@ -103,8 +116,8 @@ function getSRS3(args) {
   };
 }
 
-function getIMP(args) {
-  const PRS = getScreeve(args, getFormPresent);
+function getIMP(args, { person1, version, root, thema, person2, ...children }) {
+  const PRS = getScreeve(args, {}, getFormPresent);
   // todo: placeholder, fill with actual screeves
   const IMPAFF = PRS;
   const IMPAFFIMPF = PRS;
@@ -121,8 +134,8 @@ function getIMP(args) {
   };
 }
 
-function getINF(args) {
-  const PRS = getScreeve(args, getFormPresent);
+function getINF(args, { person1, version, root, thema, person2, ...children }) {
+  const PRS = getScreeve(args, {}, getFormPresent);
   // todo: placeholder, fill with actual screeves
   const INF = PRS;
   const INFIMPF = PRS;
@@ -133,13 +146,24 @@ function getINF(args) {
   };
 }
 
-function getScreeve(args, getForm) {
-  const S1 = getForm(args, "S1");
-  const S2 = getForm(args, "S2");
-  const S3 = getForm(args, "S3");
-  const P1 = getForm(args, "P1");
-  const P2 = getForm(args, "P2");
-  const P3 = getForm(args, "P3");
+function getScreeve(args, { person1, version, root, thema, person2, ...children }, getForm) {
+  const exceptionsS1 = { person1, version, root, thema, person2, ...children?.S1 };
+  const S1 = getForm(args, exceptionsS1, "S1");
+  
+  const exceptionsS2 = { person1, version, root, thema, person2, ...children?.S2 };
+  const S2 = getForm(args, exceptionsS2, "S2");
+  
+  const exceptionsS3 = { person1, version, root, thema, person2, ...children?.S3 };
+  const S3 = getForm(args, exceptionsS3, "S3");
+  
+  const exceptionsP1 = { person1, version, root, thema, person2, ...children?.P1 };
+  const P1 = getForm(args, exceptionsP1, "P1");
+  
+  const exceptionsP2 = { person1, version, root, thema, person2, ...children?.P2 };
+  const P2 = getForm(args, exceptionsP2, "P2");
+  
+  const exceptionsP3 = { person1, version, root, thema, person2, ...children?.P3 };
+  const P3 = getForm(args, exceptionsP3, "P3");
   
   return {
     S1,
