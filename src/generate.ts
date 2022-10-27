@@ -3,7 +3,6 @@ import getFormPresent from "./forms/present.ts";
 
 export const entries = definitions.map(d => generate(d));
 
-// todo: validate preverb, version, root, thema
 function generate({ id, exceptions, ...args }) {
   
   const value = getTable(args, exceptions);

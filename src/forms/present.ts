@@ -1,4 +1,4 @@
-import { error, Form } from "./utils.ts";
+import { error, Form, validateArgs, validateExceptions } from "./utils.ts";
 
 function select_pz_s({ root, thema }, person_s_selected) {
   const stem = thema ? root + thema : root;
@@ -37,6 +37,8 @@ function select_pz_s({ root, thema }, person_s_selected) {
 }
 
 export default function getForm(args, exceptions, person_s_selected) {
+  validateArgs(args);
+  validateExceptions(exceptions);
   
   const preverb = exceptions?.preverb?.value !== undefined ? exceptions.preverb.value : null;
   const version = exceptions?.version?.value !== undefined ? exceptions.version.value : args.version;

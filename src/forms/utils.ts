@@ -1,6 +1,11 @@
+const THEMA = [null, "ი", "ავ", "ამ", "ებ", "ობ"];
+
+const PREVERB = [null, "მი", "მო", "მიმო", "წა", "წამო", "შე", "შემო", "გა", "გამო", "ა", "ამო", "ჩა", "ჩამო", "და", "გადა", "გადმო"];
+
+const VERSION = ["NEUTRAL1", "NEUTRAL2", "SUBJECTIVE", "OBJECTIVE", "SUPERESSIVE"];
+
 // todo: add remaining versions
 export function select_version(version) {
-
   return version == "NEUTRAL1"
     ? null
     : version == "NEUTRAL2"
@@ -15,9 +20,8 @@ export function error(msg) {
 }
 
 // args is { preverb, person1, version, root, thema, person2 }
+// beware: assumes args to constructor and set are validated!
 export function Form(args) {
-  validateArgs(args);
-  
   const preverb = {
     label: "preverb",
     value: args.preverb,
@@ -65,8 +69,6 @@ export function Form(args) {
       return preverb;
     },
     set preverb({ value, note }) {
-      validateUpdate(value, note);
-      
       preverb.value = value;
       preverb.isException = true;
       preverb.note = note;
@@ -75,8 +77,6 @@ export function Form(args) {
       return person1;
     },
     set person1({ value, note }) {
-      validateUpdate(value, note);
-      
       person1.value = value;
       person1.isException = true;
       person1.note = note;
@@ -91,8 +91,6 @@ export function Form(args) {
       return version;
     },
     set version({ value, note }) {
-      validateUpdate(value, note);
-      
       version.value = value;
       version.isException = true;
       version.note = note;
@@ -101,8 +99,6 @@ export function Form(args) {
       return root;
     },
     set root({ value, note }) {
-      validateUpdate(value, note);
-      
       root.value = value;
       root.isException = true;
       root.note = note;
@@ -111,8 +107,6 @@ export function Form(args) {
       return thema;
     },
     set thema({ value, note }) {
-      validateUpdate(value, note);
-      
       thema.value = value;
       thema.isException = true;
       thema.note = note;
@@ -121,8 +115,6 @@ export function Form(args) {
       return person2;
     },
     set person2({ value, note }) {
-      validateUpdate(value, note);
-      
       person2.value = value;
       person2.isException = true;
       person2.note = note;
@@ -130,14 +122,82 @@ export function Form(args) {
   };
 }
 
-// todo: arg is non-empty string or null, except root is never null
-// args is { preverb, version, root, thema }
-function validateArgs(args) {
+export function validateArgs({ preverb, version, root, thema }) {
+  validatePreverb(preverb);
+  validateVersion(version);
+  validateRoot(root);
+  validateThema(thema);
 }
 
-// todo: value is non-empty string or null, except root is never null, note is non-empty string
-function validateUpdate(value, note) {
+export function validateExceptions({ preverb, version, root, thema } = {}) {
+  if (preverb) {
+    validatePreverb(preverb.value);
+    validateNote(preverb.note);
+  }
+  
+  if (version) {
+    validateVersion(version.value);
+    validateNote(version.note);
+  }
+  
+  if (root) {
+    validateRoot(root.value);
+    validateNote(root.note);
+  }
+  
+  if (thema) {
+    validateThema(thema.value);
+    validateNote(thema.note);
+  }
 }
 
-function validateValue(value) {
+
+export function validatePreverb(preverb) {
+  if (typeof preverb != "string" && preverb !== null) {
+    throw new Error("preverb must be a string or null");
+  }
+  
+  if (!PREVERB.some(p => p == preverb)) {
+    throw new Error(`preverb must be one of '${PREVERB.join("', '")}'`);
+  }
+}
+
+export function validateVersion(version) {
+  if (typeof version != "string") {
+    throw new Error("version must be a string");
+  }
+  
+  if (!VERSION.some(v => v == version)) {
+    throw new Error(`version must be one of '${VERSION.join("', '")}'`);
+  }
+}
+
+export function validateRoot(root) {
+  if (typeof root != "string") {
+    throw new Error("root must be a string");
+  }
+  
+  if (!root) {
+    throw new Error("root must not be empty");
+  }
+}
+
+export function validateThema(thema) {
+  if (typeof thema != "string" && thema !== null) {
+    throw new Error("thema must be a string or null");
+  }
+  
+  if (!THEMA.some(t => t == thema)) {
+    throw new Error(`thema must be one of '${THEMA.join("', '")}'`);
+  }
+}
+
+export function validateNote(note) {
+  if (typeof note != "string") {
+    throw new Error("note must be a string");
+  }
+  
+  if (!note) {
+    throw new Error("note must not be empty");
+  }
 }
