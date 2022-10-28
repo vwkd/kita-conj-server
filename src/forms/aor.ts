@@ -1,22 +1,29 @@
 import { error, Form, hasVowel } from "./utils.ts";
 import { select_person1_s } from "./prs.ts";
 
-export function select_person2_s(person_s, root, note, thema) {
-  let isStrong = thema == "ი" && note == "R4"
-  ? true
-  : thema == "ავ" && !hasVowel(root)
-  ? true
-  : thema == "ამ"
-  ? true
-  : thema == "ებ" && !hasVowel(root)
-  ? true
-  : false;
-  
-  let isO = thema == "ებ" && !hasVowel(root)
+export function checkIsStrong(root, note, thema) {
+  return thema == "ი" && note == "R4"
+    ? true
+    : thema == "ავ" && !hasVowel(root)
+    ? true
+    : thema == "ამ"
+    ? true
+    : thema == "ებ" && !hasVowel(root)
+    ? true
+    : false;
+}
+
+function checkIsO(root, thema) {
+  return thema == "ებ" && !hasVowel(root)
     ? true
     : thema == "ობ"
     ? true
     : false;
+}
+
+export function select_person2_s(person_s, root, note, thema) {
+  const isStrong = checkIsStrong(root, note, thema);
+  const isO = checkIsO(root, thema);
 
   return person_s == "S1"
     ? isStrong ? "ი" : "ე"
