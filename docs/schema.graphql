@@ -76,6 +76,7 @@ type Form {
   version: Component!
   root: Component!
   thema: Component!
+  modus: Component!
   person2: Component!
 }
 
