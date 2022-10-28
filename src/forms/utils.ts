@@ -1,8 +1,8 @@
-const THEMA = [null, "ი", "ავ", "ამ", "ებ", "ობ"];
-
 const PREVERB = [null, "მი", "მო", "მიმო", "წა", "წამო", "შე", "შემო", "გა", "გამო", "ა", "ამო", "ჩა", "ჩამო", "და", "გადა", "გადმო"];
 
 const VERSION = ["NEUTRAL1", "NEUTRAL2", "SUBJECTIVE", "OBJECTIVE", "SUPERESSIVE"];
+
+const THEMA = [null, "ი", "ავ", "ამ", "ებ", "ობ"];
 
 // todo: add remaining versions
 export function select_version(version) {
