@@ -11,8 +11,6 @@ type Table {
   SRS1: SRS1!
   SRS2: SRS2!
   SRS3: SRS3!
-  IMP: IMP!
-  INF: INF!
 }
 
 type SRS1 {
@@ -46,19 +44,6 @@ type SRS3 {
   PLUPERFIMPF: Screeve!
   PERFSUBJ: Screeve!
   PERFSUBJIMPF: Screeve!
-}
-
-type IMP {
-  IMPAFF: Screeve!
-  IMPAFFIMPF: Screeve!
-  IMPPRB1: Screeve!
-  IMPPRB1IMPF: Screeve!
-  IMPPRB2: Screeve!
-}
-
-type INF {
-  INF: Screeve!
-  INFIMPF: Screeve!  
 }
 
 type Screeve {
