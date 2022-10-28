@@ -1,4 +1,4 @@
-import { error, Form } from "./utils.ts";
+import { Form } from "./utils.ts";
 import { select_person1_s, select_person2_s } from "./prs.ts";
 
 export default function getFUT(args, exceptions, person_s) {
