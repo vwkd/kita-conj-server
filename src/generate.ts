@@ -1,5 +1,5 @@
 import { definitions } from "./deps.ts";
-import getPRS from "./forms/present.ts";
+import getPRS from "./forms/prs.ts";
 
 export const entries = definitions.map(d => generate(d));
 
