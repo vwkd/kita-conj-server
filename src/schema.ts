@@ -184,11 +184,32 @@ const tableType = new GraphQLObjectType({
   }
 });
 
+const definitionType = new GraphQLObjectType({
+  name: "Definition",
+  fields: {
+    preverb: {
+      type: GraphQLString,
+    },
+    version: {
+      type: new GraphQLNonNull(GraphQLString),
+    },
+    root: {
+      type: new GraphQLNonNull(GraphQLString),
+    },
+    thema: {
+      type: GraphQLString,
+    },
+  }
+});
+
 const entryType = new GraphQLObjectType({
   name: "Entry",
   fields: {
     id: {
       type: new GraphQLNonNull(GraphQLID),
+    },
+    definition: {
+      type: new GraphQLNonNull(definitionType),
     },
     value: {
       type: new GraphQLNonNull(tableType),
