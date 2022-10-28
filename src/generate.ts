@@ -6,6 +6,7 @@ import getPRSSUBJ from "./forms/prssubj.ts";
 import getFUT from "./forms/fut.ts";
 import getCOND from "./forms/cond.ts";
 import getFUTSUBJ from "./forms/futsubj.ts";
+import getAOR from "./forms/aor.ts";
 
 export const entries = definitions.map(d => generate(d));
 
@@ -92,9 +93,11 @@ function getSRS1(args, { person1, version, root, thema, person2, ...children }) 
 }
 
 function getSRS2(args, { person1, version, root, thema, person2, ...children }) {
+  const exceptionsAOR = { person1, version, root, thema, person2, ...children?.AOR };
+  const AOR = getScreeve(args, exceptionsAOR, getAOR);
+  
   const PLACEHOLDER = getScreeve(args, {}, getPlaceholder);
   // todo: placeholder, fill with actual screeves
-  const AOR = PLACEHOLDER;
   const AORIMPF = PLACEHOLDER;
   const OPT = PLACEHOLDER;
   const OPTIMPF = PLACEHOLDER;
