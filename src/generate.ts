@@ -1,6 +1,7 @@
 import { definitions } from "./deps.ts";
 import getPRS from "./forms/prs.ts";
 import getIMPF from "./forms/impf.ts";
+import getPRSSUBJ from "./forms/prssubj.ts";
 
 export const entries = definitions.map(d => generate(d));
 
@@ -46,8 +47,8 @@ function getGRP1(args, { person1, version, root, thema, person2, ...children }) 
   const exceptionsIMPF = { person1, version, root, thema, person2, ...children?.IMPF };
   const IMPF = getScreeve(args, exceptionsIMPF, getIMPF);
   
-  // todo: placeholder, fill with actual screeves
-  const PRSSUBJ = PRS;
+  const exceptionsPRSSUBJ = { person1, version, root, thema, person2, ...children?.PRSSUBJ };
+  const PRSSUBJ = getScreeve(args, exceptionsPRSSUBJ, getPRSSUBJ);
   
   return {
     PRS,
