@@ -32,7 +32,7 @@ function select_person2_s(stem, person_s) {
     : error(`Invalid person_s "${person_s}"`);
 }
 
-export default function getForm(args, exceptions, person_s) {
+export default function getPRS(args, exceptions, person_s) {
   const form = Form();
   
   form.preverb = null;
