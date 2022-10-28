@@ -12,7 +12,7 @@ export function select_person2_s(person_s, root, note, thema) {
   ? true
   : false;
   
-  let isO = thema == "ებ" && hasNoVocal(root)
+  let isO = thema == "ებ" && !hasVowel(root)
     ? true
     : thema == "ობ"
     ? true
