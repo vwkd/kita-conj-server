@@ -14,11 +14,16 @@ import getOPTIMPF from "./forms/optimpf.ts";
 export const entries = definitions.map(d => generate(d));
 
 function generate({ id, exceptions, ...args }) {
+
+  const definition = {
+    ...args
+  };
   
   const value = getTable(args, exceptions);
   
   return {
     id,
+    definition,
     value,
   };
 }
