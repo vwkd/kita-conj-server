@@ -1,5 +1,6 @@
 import { definitions } from "./deps.ts";
 import getPRS from "./forms/prs.ts";
+import getIMPF from "./forms/impf.ts";
 
 export const entries = definitions.map(d => generate(d));
 
@@ -41,8 +42,11 @@ function getTable(args, { person1, version, root, thema, person2, ...children })
 function getGRP1(args, { person1, version, root, thema, person2, ...children }) {
   const exceptionsPRS = { person1, version, root, thema, person2, ...children?.PRS };
   const PRS = getScreeve(args, exceptionsPRS, getPRS);
+  
+  const exceptionsIMPF = { person1, version, root, thema, person2, ...children?.IMPF };
+  const IMPF = getScreeve(args, exceptionsIMPF, getIMPF);
+  
   // todo: placeholder, fill with actual screeves
-  const IMPF = PRS;
   const PRSSUBJ = PRS;
   
   return {
