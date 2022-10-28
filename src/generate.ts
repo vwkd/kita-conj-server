@@ -1,4 +1,5 @@
 import { definitions } from "./deps.ts";
+import getPlaceholder from "./forms/placeholder.ts";
 import getPRS from "./forms/prs.ts";
 import getIMPF from "./forms/impf.ts";
 import getPRSSUBJ from "./forms/prssubj.ts";
@@ -91,12 +92,12 @@ function getSRS1(args, { person1, version, root, thema, person2, ...children }) 
 }
 
 function getSRS2(args, { person1, version, root, thema, person2, ...children }) {
-  const PRS = getScreeve(args, {}, getPRS);
+  const PLACEHOLDER = getScreeve(args, {}, getPlaceholder);
   // todo: placeholder, fill with actual screeves
-  const AOR = PRS;
-  const AORIMPF = PRS;
-  const OPT = PRS;
-  const OPTIMPF = PRS;
+  const AOR = PLACEHOLDER;
+  const AORIMPF = PLACEHOLDER;
+  const OPT = PLACEHOLDER;
+  const OPTIMPF = PLACEHOLDER;
   
   return {
     AOR,
@@ -107,14 +108,14 @@ function getSRS2(args, { person1, version, root, thema, person2, ...children }) 
 }
 
 function getSRS3(args, { person1, version, root, thema, person2, ...children }) {
-  const PRS = getScreeve(args, {}, getPRS);
+  const PLACEHOLDER = getScreeve(args, {}, getPlaceholder);
   // todo: placeholder, fill with actual screeves
-  const PERF = PRS;
-  const PERFIMPF = PRS;
-  const PLUPERF = PRS;
-  const PLUPERFIMPF = PRS;
-  const PERFSUBJ = PRS;
-  const PERFSUBJIMPF = PRS;
+  const PERF = PLACEHOLDER;
+  const PERFIMPF = PLACEHOLDER;
+  const PLUPERF = PLACEHOLDER;
+  const PLUPERFIMPF = PLACEHOLDER;
+  const PERFSUBJ = PLACEHOLDER;
+  const PERFSUBJIMPF = PLACEHOLDER;
   
   return {
     PERF,
@@ -127,13 +128,13 @@ function getSRS3(args, { person1, version, root, thema, person2, ...children }) 
 }
 
 function getIMP(args, { person1, version, root, thema, person2, ...children }) {
-  const PRS = getScreeve(args, {}, getPRS);
+  const PLACEHOLDER = getScreeve(args, {}, getPlaceholder);
   // todo: placeholder, fill with actual screeves
-  const IMPAFF = PRS;
-  const IMPAFFIMPF = PRS;
-  const IMPPRB1 = PRS;
-  const IMPPRB1IMPF = PRS;
-  const IMPPRB2 = PRS;
+  const IMPAFF = PLACEHOLDER;
+  const IMPAFFIMPF = PLACEHOLDER;
+  const IMPPRB1 = PLACEHOLDER;
+  const IMPPRB1IMPF = PLACEHOLDER;
+  const IMPPRB2 = PLACEHOLDER;
   
   return {
     IMPAFF,
@@ -145,10 +146,10 @@ function getIMP(args, { person1, version, root, thema, person2, ...children }) {
 }
 
 function getINF(args, { person1, version, root, thema, person2, ...children }) {
-  const PRS = getScreeve(args, {}, getPRS);
+  const PLACEHOLDER = getScreeve(args, {}, getPlaceholder);
   // todo: placeholder, fill with actual screeves
-  const INF = PRS;
-  const INFIMPF = PRS;
+  const INF = PLACEHOLDER;
+  const INFIMPF = PLACEHOLDER;
   
   return {
     INF,
