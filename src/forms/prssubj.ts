@@ -1,7 +1,7 @@
 import { error, Form } from "./utils.ts";
 import { select_person1_s } from "./prs.ts";
 
-function select_person2_s(person_s) {
+export function select_person2_s(person_s) {
   return person_s == "S1"
     ? "ე"
     : person_s == "S2"
