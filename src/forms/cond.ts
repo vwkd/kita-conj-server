@@ -1,4 +1,4 @@
-import { error, Form } from "./utils.ts";
+import { Form } from "./utils.ts";
 import { select_person1_s } from "./prs.ts";
 import { select_person2_s } from "./impf.ts";
 
