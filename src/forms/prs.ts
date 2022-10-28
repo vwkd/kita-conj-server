@@ -39,11 +39,13 @@ export default function getPRS(args, exceptions, person_s) {
   form.version = args.version;
   form.root = args.root;
   form.thema = args.thema;
+  form.modus = null;
   
   form.preverbExc = exceptions.preverb;
   form.versionExc = exceptions.version;
   form.rootExc = exceptions.root;
   form.themaExc = exceptions.thema;
+  form.modusExc = exceptions.modus;
   
   const stem = form.stemValue;
   form.person1 = select_person1_s(stem, person_s);

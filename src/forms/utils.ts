@@ -4,6 +4,8 @@ const VERSION = ["NEUTRAL1", "NEUTRAL2", "SUBJECTIVE", "OBJECTIVE", "SUPERESSIVE
 
 const THEMA = [null, "ი", "ავ", "ამ", "ებ", "ობ"];
 
+const MODUS = [null, "დ"];
+
 // todo: add remaining versions
 export function select_version(version) {
   return version == "NEUTRAL1"
@@ -38,6 +40,10 @@ export function Form() {
   
   const thema = {
     label: "thema",
+  };
+  
+  const modus = {
+    label: "modus",
   };
   
   const person2 = {
@@ -141,6 +147,25 @@ export function Form() {
         thema.note = note;
       }
     },
+    get modus() {
+      return modus;
+    },
+    set modus(value) {
+      validateModus(value);
+      modus.value = value;
+      modus.isException = false;
+      modus.note = null;
+    },
+    set modusExc(patch) {
+      if (patch) {
+        const { value, note } = patch;
+        validateModus(value);
+        validateNote(note);
+        modus.value = value;
+        modus.isException = true;
+        modus.note = note;
+      }
+    },
     get person2() {
       return person2;
     },
@@ -160,7 +185,7 @@ export function Form() {
       }
     },
     get stemValue() {
-      return [version.value, root.value, thema.value].filter(Boolean).join("");
+      return [version.value, root.value, thema.value, modus.value].filter(Boolean).join("");
     },
   };
 }
@@ -202,6 +227,16 @@ function validateThema(value) {
   
   if (!THEMA.some(t => t == value)) {
     throw new Error(`thema must be one of '${THEMA.join("', '")}'`);
+  }
+}
+
+function validateModus(value) {
+  if (typeof value != "string" && value !== null) {
+    throw new Error("modus must be a string or null");
+  }
+  
+  if (!MODUS.some(t => t == value)) {
+    throw new Error(`modus must be one of '${MODUS.join("', '")}'`);
   }
 }
 

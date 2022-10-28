@@ -52,6 +52,9 @@ const formType = new GraphQLObjectType({
     thema: {
       type: new GraphQLNonNull(componentType),
     },
+    modus: {
+      type: new GraphQLNonNull(componentType),
+    },
     person2: {
       type: new GraphQLNonNull(componentType),
     },
