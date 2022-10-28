@@ -169,39 +169,6 @@ const SRS3Type = new GraphQLObjectType({
   }
 });
 
-const IMPType = new GraphQLObjectType({
-  name: "IMP",
-  fields: {
-    IMPAFF: {
-      type: new GraphQLNonNull(screeveType),
-    },
-    IMPAFFIMPF: {
-      type: new GraphQLNonNull(screeveType),
-    },
-    IMPPRB1: {
-      type: new GraphQLNonNull(screeveType),
-    },
-    IMPPRB1IMPF: {
-      type: new GraphQLNonNull(screeveType),
-    },
-    IMPPRB2: {
-      type: new GraphQLNonNull(screeveType),
-    },
-  }
-});
-
-const INFType = new GraphQLObjectType({
-  name: "INF",
-  fields: {
-    INF: {
-      type: new GraphQLNonNull(screeveType),
-    },
-    INFIMPF: {
-      type: new GraphQLNonNull(screeveType),
-    },
-  }
-});
-
 const tableType = new GraphQLObjectType({
   name: "Table",
   fields: {
@@ -213,12 +180,6 @@ const tableType = new GraphQLObjectType({
     },
     SRS3: {
       type: new GraphQLNonNull(SRS3Type),
-    },
-    IMP: {
-      type: new GraphQLNonNull(IMPType),
-    },
-    INF: {
-      type: new GraphQLNonNull(INFType),
     },
   }
 });

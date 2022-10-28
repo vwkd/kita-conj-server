@@ -33,18 +33,10 @@ function getTable(args, { person1, version, root, thema, person2, ...children })
   const exceptionsSRS3 = { person1, version, root, thema, person2, ...children?.SRS3 };
   const SRS3 = getSRS3(args, exceptionsSRS3);
   
-  const exceptionsINF = { person1, version, root, thema, person2, ...children?.INF };
-  const INF = getINF(args, exceptionsINF);
-  
-  const exceptionsIMP = { person1, version, root, thema, person2, ...children?.IMP };
-  const IMP = getIMP(args, exceptionsIMP);
-  
   return {
     SRS1,
     SRS2,
     SRS3,
-    IMP,
-    INF,
   };
 }
 
@@ -133,36 +125,6 @@ function getSRS3(args, { person1, version, root, thema, person2, ...children }) 
     PLUPERFIMPF,
     PERFSUBJ,
     PERFSUBJIMPF,
-  };
-}
-
-function getIMP(args, { person1, version, root, thema, person2, ...children }) {
-  const PLACEHOLDER = getScreeve(args, {}, getPlaceholder);
-  // todo: placeholder, fill with actual screeves
-  const IMPAFF = PLACEHOLDER;
-  const IMPAFFIMPF = PLACEHOLDER;
-  const IMPPRB1 = PLACEHOLDER;
-  const IMPPRB1IMPF = PLACEHOLDER;
-  const IMPPRB2 = PLACEHOLDER;
-  
-  return {
-    IMPAFF,
-    IMPAFFIMPF,
-    IMPPRB1,
-    IMPPRB1IMPF,
-    IMPPRB2,
-  };
-}
-
-function getINF(args, { person1, version, root, thema, person2, ...children }) {
-  const PLACEHOLDER = getScreeve(args, {}, getPlaceholder);
-  // todo: placeholder, fill with actual screeves
-  const INF = PLACEHOLDER;
-  const INFIMPF = PLACEHOLDER;
-  
-  return {
-    INF,
-    INFIMPF,
   };
 }
 
