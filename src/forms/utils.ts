@@ -6,6 +6,8 @@ const THEMA = [null, "ი", "ავ", "ამ", "ებ", "ობ"];
 
 const MODUS = [null, "დ"];
 
+const VOWELS = ["ა", "ე", "ი", "ო", "უ"];
+
 // todo: add remaining versions
 export function select_version(version) {
   return version == "NEUTRAL1"
@@ -262,4 +264,8 @@ function validateNote(value) {
   if (value == "") {
     throw new Error("note must not be empty");
   }
+}
+
+export function hasVowel(value) {
+  return VOWELS.some(v => value.includes(v));
 }
