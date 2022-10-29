@@ -187,6 +187,9 @@ const tableType = new GraphQLObjectType({
 const definitionType = new GraphQLObjectType({
   name: "Definition",
   fields: {
+    category: {
+      type: new GraphQLNonNull(GraphQLInt),
+    },
     preverb: {
       type: GraphQLString,
     },
