@@ -9,6 +9,7 @@ type Entry {
 }
 
 type Definition {
+  category: Int!
   preverb: String
   version: String!
   root: String!
