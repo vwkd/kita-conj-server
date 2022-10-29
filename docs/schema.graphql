@@ -4,7 +4,15 @@ type Query {
 
 type Entry {
   id: ID!
+  definition: Definition!
   value: Table!
+}
+
+type Definition {
+  preverb: String
+  version: String!
+  root: String!
+  thema: String
 }
 
 type Table {
