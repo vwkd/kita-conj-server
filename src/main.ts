@@ -1,6 +1,5 @@
-import { serve, graphql } from "./deps.ts";
+import { serve, graphql, log } from "./deps.ts";
 import { schema } from "./schema.ts";
-import { log } from "./logger.ts";
 
 async function handleRequest(request: Request) {
   log.info("Handling request");
