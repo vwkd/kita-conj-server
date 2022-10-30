@@ -6,7 +6,7 @@ export default function getPlaceholder(args, exceptions, person_s) {
   form.preverb = null;
   form.person1 = null;
   form.version = "NEUTRAL1";
-  form.root = "-";
+  form.root = "...";
   form.thema = null;
   form.modus = null;
   form.person2 = null;
