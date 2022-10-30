@@ -52,8 +52,7 @@ export function Form() {
     set preverb(value) {
       validatePreverb(value);
       preverb.value = value;
-      preverb.isException = false;
-      preverb.note = null;
+      preverb.note = undefined;
     },
     set preverbExc(patch) {
       if (patch) {
@@ -61,7 +60,6 @@ export function Form() {
         validatePreverb(value);
         validateNote(note);
         preverb.value = value;
-        preverb.isException = true;
         preverb.note = note;
       }
     },
@@ -71,15 +69,13 @@ export function Form() {
     set person1(value) {
       validatePerson(value);
       person1.value = value;
-      person1.isException = false;
-      person1.note = null;
+      person1.note = undefined;
     },
     set person1Exc(patch) {
       if (patch) {
         const { value, note } = patch;
         validatePerson(value);
         person1.value = value;
-        person1.isException = true;
         person1.note = note;
       }
     },
@@ -95,8 +91,7 @@ export function Form() {
     set version(value) {
       validateVersion(value);
       version.value = value;
-      version.isException = false;
-      version.note = null;
+      version.note = undefined;
     },
     set versionExc(patch) {
       if (patch) {
@@ -104,7 +99,6 @@ export function Form() {
         validateVersion(value);
         validateNote(note);
         version.value = value;
-        version.isException = true;
         version.note = note;
       }
     },
@@ -114,8 +108,7 @@ export function Form() {
     set root(value) {
       validateRoot(value);
       root.value = value;
-      root.isException = false;
-      root.note = null;
+      root.note = undefined;
     },
     set rootExc(patch) {
       if (patch) {
@@ -123,7 +116,6 @@ export function Form() {
         validateRoot(value);
         validateNote(note);
         root.value = value;
-        root.isException = true;
         root.note = note;
       }
     },
@@ -133,8 +125,7 @@ export function Form() {
     set thema(value) {
       validateThema(value);
       thema.value = value;
-      thema.isException = false;
-      thema.note = null;
+      thema.note = undefined;
     },
     set themaExc(patch) {
       if (patch) {
@@ -142,7 +133,6 @@ export function Form() {
         validateThema(value);
         validateNote(note);
         thema.value = value;
-        thema.isException = true;
         thema.note = note;
       }
     },
@@ -152,8 +142,7 @@ export function Form() {
     set modus(value) {
       validateModus(value);
       modus.value = value;
-      modus.isException = false;
-      modus.note = null;
+      modus.note = undefined;
     },
     set modusExc(patch) {
       if (patch) {
@@ -161,7 +150,6 @@ export function Form() {
         validateModus(value);
         validateNote(note);
         modus.value = value;
-        modus.isException = true;
         modus.note = note;
       }
     },
@@ -171,15 +159,13 @@ export function Form() {
     set person2(value) {
       validatePerson(value);
       person2.value = value;
-      person2.isException = false;
-      person2.note = null;
+      person2.note = undefined;
     },
     set person2Exc(patch) {
       if (patch) {
         const { value, note } = patch;
         validatePerson(value);
         person2.value = value;
-        person2.isException = true;
         person2.note = note;
       }
     },

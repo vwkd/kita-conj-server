@@ -29,7 +29,16 @@ function generate({ id, exceptions = {}, ...args }) {
 }
 
 function getTable(args, exceptions) {
-  const { SRS1: excSRS1, SRS2: excSRS2, SRS3: excSRS3, ...excAll } = exceptions;
+  const { value, note, ...excRest } = exceptions;
+  
+  if (note) {
+    return {
+      value,
+      note,
+    };
+  }
+  
+  const { SRS1: excSRS1, SRS2: excSRS2, SRS3: excSRS3, ...excAll } = excRest;
   
   const SRS1 = getSRS1(args, { ...excAll, ...excSRS1 });
   
@@ -45,7 +54,23 @@ function getTable(args, exceptions) {
 }
 
 function getGRP1(args, exceptions) {
-  const { PRS: excPRS, IMPF: excIMPF, PRSSUBJ: excPRSSUBJ, ...excAll } = exceptions;
+  const { value, note, ...excRest } = exceptions;
+  
+  if (note) {
+    return {
+      value,
+      note,
+    };
+  }
+  
+  const { PRS: excPRS, IMPF: excIMPF, PRSSUBJ: excPRSSUBJ, ...excAll } = excRest;
+  
+  if (note) {
+    return {
+      value,
+      note,
+    };
+  }
   
   const PRS = getScreeve(args, { ...excAll, ...excPRS }, getPRS);
   
@@ -61,7 +86,23 @@ function getGRP1(args, exceptions) {
 }
 
 function getGRP2(args, exceptions) {
-  const { FUT: excFUT, COND: excCOND, FUTSUBJ: excFUTSUBJ, ...excAll } = exceptions;
+  const { value, note, ...excRest } = exceptions;
+  
+  if (note) {
+    return {
+      value,
+      note,
+    };
+  }
+  
+  const { FUT: excFUT, COND: excCOND, FUTSUBJ: excFUTSUBJ, ...excAll } = excRest;
+  
+  if (note) {
+    return {
+      value,
+      note,
+    };
+  }
   
   const FUT = getScreeve(args, { ...excAll, ...excFUT }, getFUT);
   
@@ -77,7 +118,16 @@ function getGRP2(args, exceptions) {
 }
 
 function getSRS1(args, exceptions) {
-  const { GRP1: excGRP1, GRP2: excGRP2, ...excAll } = exceptions;
+  const { value, note, ...excRest } = exceptions;
+  
+  if (note) {
+    return {
+      value,
+      note,
+    };
+  }
+  
+  const { GRP1: excGRP1, GRP2: excGRP2, ...excAll } = excRest;
   
   const GRP1 = getGRP1(args, { ...excAll, ...excGRP1 });
   
@@ -90,7 +140,16 @@ function getSRS1(args, exceptions) {
 }
 
 function getSRS2(args, exceptions) {
-  const { AOR: excAOR, AORIMPF: excAORIMPF, OPT: excOPT, OPTIMPF: excOPTIMPF, ...excAll } = exceptions;
+  const { value, note, ...excRest } = exceptions;
+  
+  if (note) {
+    return {
+      value,
+      note,
+    };
+  }
+  
+  const { AOR: excAOR, AORIMPF: excAORIMPF, OPT: excOPT, OPTIMPF: excOPTIMPF, ...excAll } = excRest;
   
   const AOR = getScreeve(args, { ...excAll, ...excAOR }, getAOR);
   
@@ -109,7 +168,16 @@ function getSRS2(args, exceptions) {
 }
 
 function getSRS3(args, exceptions) {
-  const { PERF: excPERF, PERFIMPF: excPERFIMPF, PLUPERF: excPLUPERF, PLUPERFIMPF: excPLUPERFIMPF, PERFSUBJ: excPERFSUBJ, PERFSUBJIMPF: excPERFSUBJIMPF, ...excAll } = exceptions;
+  const { value, note, ...excRest } = exceptions;
+  
+  if (note) {
+    return {
+      value,
+      note,
+    };
+  }
+  
+  const { PERF: excPERF, PERFIMPF: excPERFIMPF, PLUPERF: excPLUPERF, PLUPERFIMPF: excPLUPERFIMPF, PERFSUBJ: excPERFSUBJ, PERFSUBJIMPF: excPERFSUBJIMPF, ...excAll } = excRest;
   
   const PLACEHOLDER = getScreeve(args, {}, getPlaceholder);
   // todo: placeholder, fill with actual screeves
@@ -130,20 +198,29 @@ function getSRS3(args, exceptions) {
   };
 }
 
-function getScreeve(args, exceptions, getForm) {
-  const { S1: excS1, S2: excS2, S3: excS3, P1: excP1, P2: excP2, P3: excP3, ...excAll } = exceptions;
+function getScreeve(args, exceptions, form) {
+  const { value, note, ...excRest } = exceptions;
   
-  const S1 = getForm(args, { ...excAll, ...excS1 }, "S1");
+  if (note) {
+    return {
+      value,
+      note,
+    };
+  }
   
-  const S2 = getForm(args, { ...excAll, ...excS2 }, "S2");
+  const { S1: excS1, S2: excS2, S3: excS3, P1: excP1, P2: excP2, P3: excP3, ...excAll } = excRest;
   
-  const S3 = getForm(args, { ...excAll, ...excS3 }, "S3");
+  const S1 = getForm(args, { ...excAll, ...excS1 }, form, "S1");
   
-  const P1 = getForm(args, { ...excAll, ...excP1 }, "P1");
+  const S2 = getForm(args, { ...excAll, ...excS2 }, form, "S2");
   
-  const P2 = getForm(args, { ...excAll, ...excP2 }, "P2");
+  const S3 = getForm(args, { ...excAll, ...excS3 }, form, "S3");
   
-  const P3 = getForm(args, { ...excAll, ...excP3 }, "P3");
+  const P1 = getForm(args, { ...excAll, ...excP1 }, form, "P1");
+  
+  const P2 = getForm(args, { ...excAll, ...excP2 }, form, "P2");
+  
+  const P3 = getForm(args, { ...excAll, ...excP3 }, form, "P3");
   
   return {
     S1,
@@ -153,4 +230,27 @@ function getScreeve(args, exceptions, getForm) {
     P2,
     P3,
   };
+}
+
+function getForm(args, exceptions, form, person_s) {
+  const { value, note, ...excRest } = exceptions;
+  
+  if (note) {
+    return {
+      value,
+      note,
+    };
+  }
+  
+  const { preverb, person1, version, root, thema, modus, person2 } = form(args, excRest, person_s);
+  
+  return {
+    preverb,
+    person1,
+    version,
+    root,
+    thema,
+    modus,
+    person2,
+  }
 }
