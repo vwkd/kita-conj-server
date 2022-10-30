@@ -5,7 +5,7 @@ type Query {
 type Entry {
   id: ID!
   definition: Definition!
-  value: Table!
+  value: TableOrException!
 }
 
 type Definition {
@@ -16,66 +16,87 @@ type Definition {
   thema: String
 }
 
+union TableOrException = Table | Exception
+
 type Table {
-  SRS1: SRS1!
-  SRS2: SRS2!
-  SRS3: SRS3!
+  SRS1: SRS1OrException!
+  SRS2: SRS2OrException!
+  SRS3: SRS3OrException!
 }
+
+union SRS1OrException = SRS1 | Exception
 
 type SRS1 {
-  GRP1: GRP1!
-  GRP2: GRP2!
+  GRP1: GRP1OrException!
+  GRP2: GRP2OrException!
 }
+
+union GRP1OrException = GRP1 | Exception
 
 type GRP1 {
-  PRS: Screeve!
-  IMPF: Screeve!
-  PRSSUBJ: Screeve!
+  PRS: ScreeveOrException!
+  IMPF: ScreeveOrException!
+  PRSSUBJ: ScreeveOrException!
 }
+
+union GRP2OrException = GRP2 | Exception
 
 type GRP2 {
-  FUT: Screeve!
-  COND: Screeve!
-  FUTSUBJ: Screeve!
+  FUT: ScreeveOrException!
+  COND: ScreeveOrException!
+  FUTSUBJ: ScreeveOrException!
 }
+
+union SRS2OrException = SRS2 | Exception
 
 type SRS2 {
-  AOR: Screeve!
-  AORIMPF: Screeve!
-  OPT: Screeve!
-  OPTIMPF: Screeve!
+  AOR: ScreeveOrException!
+  AORIMPF: ScreeveOrException!
+  OPT: ScreeveOrException!
+  OPTIMPF: ScreeveOrException!
 }
+
+union SRS3OrException = SRS3 | Exception
 
 type SRS3 {
-  PERF: Screeve!
-  PERFIMPF: Screeve!
-  PLUPERF: Screeve!
-  PLUPERFIMPF: Screeve!
-  PERFSUBJ: Screeve!
-  PERFSUBJIMPF: Screeve!
+  PERF: ScreeveOrException!
+  PERFIMPF: ScreeveOrException!
+  PLUPERF: ScreeveOrException!
+  PLUPERFIMPF: ScreeveOrException!
+  PERFSUBJ: ScreeveOrException!
+  PERFSUBJIMPF: ScreeveOrException!
 }
+
+union ScreeveOrException = Screeve | Exception
 
 type Screeve {
-  S1: Form!
-  S2: Form!
-  S3: Form!
-  P1: Form!
-  P2: Form!
-  P3: Form!
+  S1: FormOrException!
+  S2: FormOrException!
+  S3: FormOrException!
+  P1: FormOrException!
+  P2: FormOrException!
+  P3: FormOrException!
 }
 
+union FormOrException = Form | Exception
+
 type Form {
-  preverb: Component!
-  person1: Component!
-  version: Component!
-  root: Component!
-  thema: Component!
-  modus: Component!
-  person2: Component!
+  preverb: ComponentOrException!
+  person1: ComponentOrException!
+  version: ComponentOrException!
+  root: ComponentOrException!
+  thema: ComponentOrException!
+  modus: ComponentOrException!
+  person2: ComponentOrException!
 }
+
+union ComponentOrException = Component | Exception
 
 type Component {
   value: String
-  isException: Boolean!
-  note: String
+}
+
+type Exception {
+  value: String
+  note: String!
 }
