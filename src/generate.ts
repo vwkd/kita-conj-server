@@ -28,15 +28,14 @@ function generate({ id, exceptions = {}, ...args }) {
   };
 }
 
-function getTable(args, { person1, version, root, thema, person2, ...children }) {
-  const exceptionsSRS1 = { person1, version, root, thema, person2, ...children.SRS1 };
-  const SRS1 = getSRS1(args, exceptionsSRS1);
+function getTable(args, exceptions) {
+  const { SRS1: excSRS1, SRS2: excSRS2, SRS3: excSRS3, ...excAll } = exceptions;
   
-  const exceptionsSRS2 = { person1, version, root, thema, person2, ...children.SRS2 };
-  const SRS2 = getSRS2(args, exceptionsSRS2);
+  const SRS1 = getSRS1(args, { ...excAll, ...excSRS1 });
   
-  const exceptionsSRS3 = { person1, version, root, thema, person2, ...children.SRS3 };
-  const SRS3 = getSRS3(args, exceptionsSRS3);
+  const SRS2 = getSRS2(args, { ...excAll, ...excSRS2 });
+  
+  const SRS3 = getSRS3(args, { ...excAll, ...excSRS3 });
   
   return {
     SRS1,
@@ -45,15 +44,14 @@ function getTable(args, { person1, version, root, thema, person2, ...children })
   };
 }
 
-function getGRP1(args, { person1, version, root, thema, person2, ...children }) {
-  const exceptionsPRS = { person1, version, root, thema, person2, ...children.PRS };
-  const PRS = getScreeve(args, exceptionsPRS, getPRS);
+function getGRP1(args, exceptions) {
+  const { PRS: excPRS, IMPF: excIMPF, PRSSUBJ: excPRSSUBJ, ...excAll } = exceptions;
   
-  const exceptionsIMPF = { person1, version, root, thema, person2, ...children.IMPF };
-  const IMPF = getScreeve(args, exceptionsIMPF, getIMPF);
+  const PRS = getScreeve(args, { ...excAll, ...excPRS }, getPRS);
   
-  const exceptionsPRSSUBJ = { person1, version, root, thema, person2, ...children.PRSSUBJ };
-  const PRSSUBJ = getScreeve(args, exceptionsPRSSUBJ, getPRSSUBJ);
+  const IMPF = getScreeve(args, { ...excAll, ...excIMPF }, getIMPF);
+  
+  const PRSSUBJ = getScreeve(args, { ...excAll, ...excPRSSUBJ }, getPRSSUBJ);
   
   return {
     PRS,
@@ -62,15 +60,14 @@ function getGRP1(args, { person1, version, root, thema, person2, ...children }) 
   };
 }
 
-function getGRP2(args, { person1, version, root, thema, person2, ...children }) {
-  const exceptionsFUT = { person1, version, root, thema, person2, ...children.FUT };
-  const FUT = getScreeve(args, exceptionsFUT, getFUT);
+function getGRP2(args, exceptions) {
+  const { FUT: excFUT, COND: excCOND, FUTSUBJ: excFUTSUBJ, ...excAll } = exceptions;
   
-  const exceptionsCOND = { person1, version, root, thema, person2, ...children.COND };
-  const COND = getScreeve(args, exceptionsCOND, getCOND);
+  const FUT = getScreeve(args, { ...excAll, ...excFUT }, getFUT);
   
-  const exceptionsFUTSUBJ = { person1, version, root, thema, person2, ...children.FUTSUBJ };
-  const FUTSUBJ = getScreeve(args, exceptionsFUTSUBJ, getFUTSUBJ);
+  const COND = getScreeve(args, { ...excAll, ...excCOND }, getCOND);
+  
+  const FUTSUBJ = getScreeve(args, { ...excAll, ...excFUTSUBJ }, getFUTSUBJ);
 
   return {
     FUT,
@@ -79,12 +76,12 @@ function getGRP2(args, { person1, version, root, thema, person2, ...children }) 
   };
 }
 
-function getSRS1(args, { person1, version, root, thema, person2, ...children }) {
-  const exceptionsGRP1 = { person1, version, root, thema, person2, ...children.GRP1 };
-  const GRP1 = getGRP1(args, exceptionsGRP1);
+function getSRS1(args, exceptions) {
+  const { GRP1: excGRP1, GRP2: excGRP2, ...excAll } = exceptions;
   
-  const exceptionsGRP2 = { person1, version, root, thema, person2, ...children.GRP2 };
-  const GRP2 = getGRP2(args, exceptionsGRP2);
+  const GRP1 = getGRP1(args, { ...excAll, ...excGRP1 });
+  
+  const GRP2 = getGRP2(args, { ...excAll, ...excGRP2 });
   
   return {
     GRP1,
@@ -92,18 +89,16 @@ function getSRS1(args, { person1, version, root, thema, person2, ...children }) 
   };
 }
 
-function getSRS2(args, { person1, version, root, thema, person2, ...children }) {
-  const exceptionsAOR = { person1, version, root, thema, person2, ...children.AOR };
-  const AOR = getScreeve(args, exceptionsAOR, getAOR);
+function getSRS2(args, exceptions) {
+  const { AOR: excAOR, AORIMPF: excAORIMPF, OPT: excOPT, OPTIMPF: excOPTIMPF, ...excAll } = exceptions;
   
-  const exceptionsAORIMPF = { person1, version, root, thema, person2, ...children.AORIMPF };
-  const AORIMPF = getScreeve(args, exceptionsAORIMPF, getAORIMPF);
+  const AOR = getScreeve(args, { ...excAll, ...excAOR }, getAOR);
   
-  const exceptionsOPT = { person1, version, root, thema, person2, ...children.OPT };
-  const OPT = getScreeve(args, exceptionsOPT, getOPT);
+  const AORIMPF = getScreeve(args, { ...excAll, ...excAORIMPF }, getAORIMPF);
   
-  const exceptionsOPTIMPF = { person1, version, root, thema, person2, ...children.OPTIMPF };
-  const OPTIMPF = getScreeve(args, exceptionsOPTIMPF, getOPTIMPF);
+  const OPT = getScreeve(args, { ...excAll, ...excOPT }, getOPT);
+  
+  const OPTIMPF = getScreeve(args, { ...excAll, ...excOPTIMPF }, getOPTIMPF);
   
   return {
     AOR,
@@ -113,7 +108,9 @@ function getSRS2(args, { person1, version, root, thema, person2, ...children }) 
   };
 }
 
-function getSRS3(args, { person1, version, root, thema, person2, ...children }) {
+function getSRS3(args, exceptions) {
+  const { PERF: excPERF, PERFIMPF: excPERFIMPF, PLUPERF: excPLUPERF, PLUPERFIMPF: excPLUPERFIMPF, PERFSUBJ: excPERFSUBJ, PERFSUBJIMPF: excPERFSUBJIMPF, ...excAll } = exceptions;
+  
   const PLACEHOLDER = getScreeve(args, {}, getPlaceholder);
   // todo: placeholder, fill with actual screeves
   const PERF = PLACEHOLDER;
@@ -133,24 +130,20 @@ function getSRS3(args, { person1, version, root, thema, person2, ...children }) 
   };
 }
 
-function getScreeve(args, { person1, version, root, thema, person2, ...children }, getForm) {
-  const exceptionsS1 = { person1, version, root, thema, person2, ...children.S1 };
-  const S1 = getForm(args, exceptionsS1, "S1");
+function getScreeve(args, exceptions, getForm) {
+  const { S1: excS1, S2: excS2, S3: excS3, P1: excP1, P2: excP2, P3: excP3, ...excAll } = exceptions;
   
-  const exceptionsS2 = { person1, version, root, thema, person2, ...children.S2 };
-  const S2 = getForm(args, exceptionsS2, "S2");
+  const S1 = getForm(args, { ...excAll, ...excS1 }, "S1");
   
-  const exceptionsS3 = { person1, version, root, thema, person2, ...children.S3 };
-  const S3 = getForm(args, exceptionsS3, "S3");
+  const S2 = getForm(args, { ...excAll, ...excS2 }, "S2");
   
-  const exceptionsP1 = { person1, version, root, thema, person2, ...children.P1 };
-  const P1 = getForm(args, exceptionsP1, "P1");
+  const S3 = getForm(args, { ...excAll, ...excS3 }, "S3");
   
-  const exceptionsP2 = { person1, version, root, thema, person2, ...children.P2 };
-  const P2 = getForm(args, exceptionsP2, "P2");
+  const P1 = getForm(args, { ...excAll, ...excP1 }, "P1");
   
-  const exceptionsP3 = { person1, version, root, thema, person2, ...children.P3 };
-  const P3 = getForm(args, exceptionsP3, "P3");
+  const P2 = getForm(args, { ...excAll, ...excP2 }, "P2");
+  
+  const P3 = getForm(args, { ...excAll, ...excP3 }, "P3");
   
   return {
     S1,
