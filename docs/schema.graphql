@@ -39,34 +39,6 @@ type GRP1 {
   PRSSUBJ: ScreeveOrException!
 }
 
-union GRP2OrException = GRP2 | Exception
-
-type GRP2 {
-  FUT: ScreeveOrException!
-  COND: ScreeveOrException!
-  FUTSUBJ: ScreeveOrException!
-}
-
-union SRS2OrException = SRS2 | Exception
-
-type SRS2 {
-  AOR: ScreeveOrException!
-  AORIMPF: ScreeveOrException!
-  OPT: ScreeveOrException!
-  OPTIMPF: ScreeveOrException!
-}
-
-union SRS3OrException = SRS3 | Exception
-
-type SRS3 {
-  PERF: ScreeveOrException!
-  PERFIMPF: ScreeveOrException!
-  PLUPERF: ScreeveOrException!
-  PLUPERFIMPF: ScreeveOrException!
-  PERFSUBJ: ScreeveOrException!
-  PERFSUBJIMPF: ScreeveOrException!
-}
-
 union ScreeveOrException = Screeve | Exception
 
 type Screeve {
@@ -99,4 +71,32 @@ type Component {
 type Exception {
   value: String
   note: String!
+}
+
+union GRP2OrException = GRP2 | Exception
+
+type GRP2 {
+  FUT: ScreeveOrException!
+  COND: ScreeveOrException!
+  FUTSUBJ: ScreeveOrException!
+}
+
+union SRS2OrException = SRS2 | Exception
+
+type SRS2 {
+  AOR: ScreeveOrException!
+  AORIMPF: ScreeveOrException!
+  OPT: ScreeveOrException!
+  OPTIMPF: ScreeveOrException!
+}
+
+union SRS3OrException = SRS3 | Exception
+
+type SRS3 {
+  PERF: ScreeveOrException!
+  PERFIMPF: ScreeveOrException!
+  PLUPERF: ScreeveOrException!
+  PLUPERFIMPF: ScreeveOrException!
+  PERFSUBJ: ScreeveOrException!
+  PERFSUBJIMPF: ScreeveOrException!
 }
