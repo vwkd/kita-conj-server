@@ -75,7 +75,6 @@ type Form {
 }
 
 type Component {
-  label: String!
   value: String
   isException: Boolean!
   note: String

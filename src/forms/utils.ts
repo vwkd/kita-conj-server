@@ -25,31 +25,24 @@ export function error(msg) {
 
 export function Form() {
   const preverb = {
-    label: "preverb",
   };
   
   const person1 = {
-    label: "person1",
   };
   
   const version = {
-    label: "version",
   };
   
   const root = {
-    label: "root",
   };
   
   const thema = {
-    label: "thema",
   };
   
   const modus = {
-    label: "modus",
   };
   
   const person2 = {
-    label: "person2",
   };
   
   return {
