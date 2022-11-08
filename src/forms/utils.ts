@@ -6,7 +6,11 @@ const THEMA = [null, "ი", "ავ", "ამ", "ებ", "ობ"];
 
 const MODUS = [null, "დ"];
 
-const VOWELS = ["ა", "ე", "ი", "ო", "უ"];
+export const VOWELS = ["ა", "ე", "ი", "ო", "უ"];
+
+export const T_SOUNDS = ["დ", "თ", "ტ", "ძ", "ც", "წ", "ჯ", "ჩ", "ჭ"];
+
+export const SOFT_SOUNDS = ["ბ", "ფ", "ზ", "ს", "ჟ", "შ", "ღ", "ხ", "ლ", "რ", "მ", "ნ", "ვ"];
 
 // todo: add remaining versions
 export function select_version(version) {
@@ -247,4 +251,85 @@ function validateNote(value) {
 
 export function hasVowel(value) {
   return VOWELS.some(v => value.includes(v));
+}
+
+export function merge_person1(pre_s, pre_o, person_s, person_o, obj) {
+
+  // reflexivity not possible
+  // pz_o S1 and pz_s S1, pz_o S1 and pz_s P1, pz_o P1 and pz_s S1, pz_o P1 and pz_s P1
+  // pz_o S2 and pz_s S2, pz_o S2 and pz_s P2, pz_o P2 and pz_s S2, pz_o P2 and pz_s P2
+  if ((person_o.slice(-1) == "1" || person_o.slice(-1) == "2") && person_o.slice(-1) == person_s.slice(-1)) {
+    throw new Error(`merge_person1: can't merge person_o '${person_o}' and person_s '${person_s}'`);
+  }
+
+  // pz_o X2 supplants pz_s X1
+  if (person_o.endsWith("2") && person_s.endsWith("1")) {
+    return pre_o ? pre_o : pre_s;
+  }
+
+  // pz_s P3 supplants pz_o P2
+  if (person_s == "P3" && person_o == "P2") {
+    return pre_s ? pre_s : pre_o;
+  }
+
+  // pz_o P2 appended after pz_s S3
+  // note: omit pre_s because always null!
+  if (person_o == "P2" && person_s == "S3") {
+    return pre_o;
+  }
+
+  // (ONLY IO) pz_o X3 appended after pz_s X
+  if (obj == "INDIRECT" && person_o.endsWith("3")) {
+    return pre_s + pre_o;
+  }
+
+  // check that at most one is non-empty
+  if (pre_s && pre_o) {
+    throw new Error(`merge_person1 person_s '${person_s}' person_o '${person_o}': both pre_s '${pre_s}' and pre_o '${pre_o}' are non-empty`)
+  }
+
+  // use non-empty one if any
+  // note: order doesn't matter since at most one is non-empty
+  return pre_s ? pre_s : pre_o;
+}
+
+export function merge_person2(post_s, post_o, person_s, person_o, obj) {
+
+  // reflexivity not possible
+  // pz_o S1 and pz_s S1, pz_o S1 and pz_s P1, pz_o P1 and pz_s S1, pz_o P1 and pz_s P1
+  // pz_o S2 and pz_s S2, pz_o S2 and pz_s P2, pz_o P2 and pz_s S2, pz_o P2 and pz_s P2
+  if ((person_o.slice(-1) == "1" || person_o.slice(-1) == "2") && person_o == person_s) {
+    throw new Error(`merge_person2: can't merge person_o '${person_o}' and person_s '${person_s}'`);
+  }
+  
+  // pz_o X2 supplants pz_s X1
+  if (person_o.endsWith("2") && person_s.endsWith("1")) {
+    return post_o ? post_o : post_s;
+  }
+
+  // pz_s P3 supplants pz_o P2
+  if (person_s == "P3" && person_o == "P2") {
+    return post_s ? post_s : post_o;
+  }
+
+  // pz_o P2 appended after pz_s S3, pz_s S3 looses trailing -ს if any
+  if (person_o == "P2" && person_s == "S3") {
+    const post_s_clean = post_s.replace(/ს$/, '');
+    return post_s_clean + post_o;
+  }
+
+  // (ONLY IO) pz_o X3 appended after pz_s X
+  // TODO: maybe delete post_o since always empty or move before post_s?
+  if (obj == "INDIRECT" && person_o.endsWith("3")) {
+    return post_s + post_o;
+  }
+
+  // check that at most one is non-empty
+  if (post_s && post_o) {
+    throw new Error(`merge_person2 person_s '${person_s}' person_o '${person_o}': both post_s '${post_s}' and post_o '${post_o}' are non-empty`)
+  }
+
+  // use non-empty one if any
+  // note: order doesn't matter since at most one is non-empty
+  return post_s ? post_s : post_o;
 }
