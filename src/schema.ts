@@ -1,4 +1,4 @@
-import { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLID, GraphQLNonNull, GraphQLInt, GraphQLList, GraphQLEnumType, GraphQLUnionType, GraphQLBoolean } from "./deps.ts";
+import { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLID, GraphQLNonNull, GraphQLInt, GraphQLList, GraphQLEnumType, GraphQLUnionType, GraphQLBoolean, log } from "./deps.ts";
 import { database } from "./database.ts"
 
 // --------- RESOLVER ---------
@@ -8,7 +8,11 @@ async function entryResolver(_, { id }) {
   // TODO: assert ID is provided, is ID type
   // TODO: error handling entry with id does not exist
   
-  return database.entry(id);
+  const entry = database.entry(id);
+  
+  log.debug("database entry:", entry);
+  
+  return entry;
 }
 
 // --------- SCHEMA ---------
