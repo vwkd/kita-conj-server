@@ -41,7 +41,8 @@ export function select_person2_s(person_s, { root, note, thema }) {
 }
 
 export default function getAOR(args, exceptions, person_s, person_o) {
-  const form = Form();
+  const obj = args.obj;
+  const form = Form(person_s, person_o, obj);
   
   form.preverb = args.preverb;
   form.version = args.version;
@@ -51,7 +52,6 @@ export default function getAOR(args, exceptions, person_s, person_o) {
   form.versionExc = exceptions.version;
   form.rootExc = exceptions.root;
   
-  const obj = args.obj;
   const stem = form.stemValue;
   const rootValue = form.root.value;
   const rootNote = form.root.note;

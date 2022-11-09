@@ -12,14 +12,19 @@ export const T_SOUNDS = ["დ", "თ", "ტ", "ძ", "ც", "წ", "ჯ", "ჩ",
 
 export const SOFT_SOUNDS = ["ბ", "ფ", "ზ", "ს", "ჟ", "შ", "ღ", "ხ", "ლ", "რ", "მ", "ნ", "ვ"];
 
-// todo: add remaining versions
-export function select_version(version) {
+export function select_version(version, person_o) {
   return version == "NEUTRAL1"
     ? null
     : version == "NEUTRAL2"
     ? "ა"
     : version == "SUBJECTIVE"
     ? "ი"
+    : version == "OBJECTIVE"
+    ? person_o == "S3" || person_o == "P3"
+      ? "უ"
+      : "ი"
+    : version == "SUPERESSIVE"
+    ? "ა"
     : error(`Invalid version "${version}"`);
 }
 
@@ -27,7 +32,8 @@ export function error(msg) {
   throw new Error(msg);
 }
 
-export function Form() {
+export function Form(person_s, person_o, obj) {
+
   const preverb = {
   };
   
@@ -86,11 +92,8 @@ export function Form() {
     get version() {
       return {
         ...version,
-        value: select_version(version.value),
+        value: select_version(version.value, person_o),
       };
-    },
-    get versionRaw() {
-      return version;
     },
     set version(value) {
       validateVersion(value);

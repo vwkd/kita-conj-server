@@ -3,7 +3,8 @@ import { select_person1_s, select_person1_o, select_person2_o } from "./prs.ts";
 import { select_person2_s } from "./opt.ts";
 
 export default function getOPTIMPF(args, exceptions, person_s, person_o) {
-  const form = Form();
+  const obj = args.obj;
+  const form = Form(person_s, person_o, obj);
   
   form.preverb = null;
   form.version = args.version;
@@ -13,7 +14,6 @@ export default function getOPTIMPF(args, exceptions, person_s, person_o) {
   form.versionExc = exceptions.version;
   form.rootExc = exceptions.root;
   
-  const obj = args.obj;
   const stem = form.stemValue;
   const rootValue = form.root.value;
   const rootNote = form.root.note;

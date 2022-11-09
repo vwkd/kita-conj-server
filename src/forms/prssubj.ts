@@ -18,7 +18,8 @@ export function select_person2_s(person_s) {
 }
 
 export default function getPRSSUBJ(args, exceptions, person_s, person_o) {
-  const form = Form();
+  const obj = args.obj;
+  const form = Form(person_s, person_o, obj);
   
   form.preverb = null;
   form.version = args.version;
@@ -32,7 +33,6 @@ export default function getPRSSUBJ(args, exceptions, person_s, person_o) {
   form.themaExc = exceptions.thema;
   form.modusExc = exceptions.modus;
   
-  const obj = args.obj;
   const stem = form.stemValue;
   const pre_s = select_person1_s(person_s);
   const pre_o = select_person1_o(person_o, { obj, stem });
