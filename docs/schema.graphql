@@ -42,6 +42,17 @@ type GRP1 {
 union ScreeveOrException = Screeve | Exception
 
 type Screeve {
+  S1: SubjectOrException!
+  S2: SubjectOrException!
+  S3: SubjectOrException!
+  P1: SubjectOrException!
+  P2: SubjectOrException!
+  P3: SubjectOrException!
+}
+
+union SubjectOrException = Subject | Exception
+
+type Subject {
   S1: FormOrException!
   S2: FormOrException!
   S3: FormOrException!
