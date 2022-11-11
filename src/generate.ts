@@ -10,6 +10,7 @@ import getAOR from "./forms/aor.ts";
 import getAORIMPF from "./forms/aorimpf.ts";
 import getOPT from "./forms/opt.ts";
 import getOPTIMPF from "./forms/optimpf.ts";
+import getPERF from "./forms/perf.ts";
 
 export const entries = definitions.map(d => generate(d));
 
@@ -180,9 +181,10 @@ function getSRS3(args, exceptions) {
   
   const { PERF: excPERF, PERFIMPF: excPERFIMPF, PLUPERF: excPLUPERF, PLUPERFIMPF: excPLUPERFIMPF, PERFSUBJ: excPERFSUBJ, PERFSUBJIMPF: excPERFSUBJIMPF, ...excAll } = excRest;
   
+  const PERF = getScreeve(args, { ...excAll, ...excPERF }, getPERF);
+  
   const PLACEHOLDER = getScreeve(args, {}, getPlaceholder);
   // todo: placeholder, fill with actual screeves
-  const PERF = PLACEHOLDER;
   const PERFIMPF = PLACEHOLDER;
   const PLUPERF = PLACEHOLDER;
   const PLUPERFIMPF = PLACEHOLDER;
@@ -283,11 +285,11 @@ function getForm(args, exceptions, form, person_s, person_o) {
   if ((person_o.slice(-1) == "1" || person_o.slice(-1) == "2") && person_o.slice(-1) == person_s.slice(-1)) {
     return {
       value: null,
-      note: "G1",
+      note: `Reflexivity doesn't exist. Instead use X3 with 'თავი'`,
     };
   }
   
-  const { preverb, person1, version, root, thema, modus, person2 } = form(args, excRest, person_s, person_o);
+  const { preverb, person1, version, root, thema, modus, perfect2, person2 } = form(args, excRest, person_s, person_o);
   
   return {
     preverb,
@@ -296,6 +298,7 @@ function getForm(args, exceptions, form, person_s, person_o) {
     root,
     thema,
     modus,
+    perfect2,
     person2,
   }
 }

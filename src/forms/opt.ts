@@ -48,9 +48,11 @@ export default function getOPT(args, exceptions, person_s, person_o) {
   
   form.thema = null;
   form.modus = null;
+  form.perfect2 = null;
   
   form.themaExc = exceptions.thema;
   form.modusExc = exceptions.modus;
+  form.perfect2Exc = exceptions.perfect2;
   
   return form;
 }

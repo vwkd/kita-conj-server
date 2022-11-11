@@ -12,6 +12,8 @@ const THEMA = [null, "ი", "ავ", "ამ", "ებ", "ობ"];
 
 const MODUS = [null, "დ"];
 
+const PERFECT2 = [null, "ი"];
+
 export const VOWELS = ["ა", "ე", "ი", "ო", "უ"];
 
 export const T_SOUNDS = ["დ", "თ", "ტ", "ძ", "ც", "წ", "ჯ", "ჩ", "ჭ"];
@@ -61,6 +63,9 @@ export function Form(person_s, person_o, obj) {
   };
   
   const modus = {
+  };
+  
+  const perfect2 = {
   };
   
   const person2 = {
@@ -170,6 +175,23 @@ export function Form(person_s, person_o, obj) {
         modus.note = note;
       }
     },
+    get perfect2() {
+      return perfect2;
+    },
+    set perfect2(value) {
+      validatePerfect2(value);
+      perfect2.value = value;
+      perfect2.note = undefined;
+    },
+    set perfect2Exc(patch) {
+      if (patch) {
+        const { value, note } = patch;
+        validatePerfect2(value);
+        validateNote(note);
+        perfect2.value = value;
+        perfect2.note = note;
+      }
+    },
     get person2() {
       return person2;
     },
@@ -187,7 +209,7 @@ export function Form(person_s, person_o, obj) {
       }
     },
     get stemValue() {
-      return [version.value, root.value, thema.value, modus.value].filter(Boolean).join("");
+      return [version.value, root.value, thema.value, modus.value, perfect2.value].filter(Boolean).join("");
     },
   };
 }
@@ -267,6 +289,16 @@ function validateModus(value) {
   
   if (!MODUS.some(t => t == value)) {
     throw new Error(`modus must be one of '${MODUS.join("', '")}'`);
+  }
+}
+
+function validatePerfect2(value) {
+  if (typeof value != "string" && value !== null) {
+    throw new Error("perfect2 must be a string or null");
+  }
+  
+  if (!PERFECT2.some(t => t == value)) {
+    throw new Error(`perfect2 must be one of '${PERFECT2.join("', '")}'`);
   }
 }
 

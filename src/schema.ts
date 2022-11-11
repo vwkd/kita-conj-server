@@ -76,6 +76,9 @@ const formType = new GraphQLObjectType({
     modus: {
       type: new GraphQLNonNull(componentOrExceptionType),
     },
+    perfect2: {
+      type: new GraphQLNonNull(componentOrExceptionType),
+    },
     person2: {
       type: new GraphQLNonNull(componentOrExceptionType),
     },

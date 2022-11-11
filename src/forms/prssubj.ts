@@ -26,12 +26,14 @@ export default function getPRSSUBJ(args, exceptions, person_s, person_o) {
   form.root = args.root;
   form.thema = args.thema;
   form.modus = "დ";
+  form.perfect2 = null;
   
   form.preverbExc = exceptions.preverb;
   form.versionExc = exceptions.version;
   form.rootExc = exceptions.root;
   form.themaExc = exceptions.thema;
   form.modusExc = exceptions.modus;
+  form.perfect2Exc = exceptions.perfect2;
   
   const stem = form.stemValue;
   const pz1_s = select_person1_s(person_s);

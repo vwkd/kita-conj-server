@@ -71,6 +71,7 @@ type Form {
   root: ComponentOrException!
   thema: ComponentOrException!
   modus: ComponentOrException!
+  perfect2: ComponentOrException!
   person2: ComponentOrException!
 }
 
