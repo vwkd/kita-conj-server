@@ -1,3 +1,5 @@
+import { log } from "../deps.ts";
+
 const PREVERB = [null, "მი", "მო", "მიმო", "წა", "წამო", "შე", "შემო", "გა", "გამო", "ა", "ამო", "ჩა", "ჩამო", "და", "გადა", "გადმო"];
 
 const VERSION = ["NEUTRAL1", "NEUTRAL2", "SUBJECTIVE", "OBJECTIVE", "SUPERESSIVE"];
@@ -24,6 +26,8 @@ export function error(msg) {
 }
 
 export function Form() {
+  log.debug("Creating form");
+  
   const preverb = {
   };
   

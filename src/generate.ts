@@ -1,4 +1,4 @@
-import { definitions } from "./deps.ts";
+import { definitions, log } from "./deps.ts";
 import getPlaceholder from "./forms/placeholder.ts";
 import getPRS from "./forms/prs.ts";
 import getIMPF from "./forms/impf.ts";
@@ -14,6 +14,7 @@ import getOPTIMPF from "./forms/optimpf.ts";
 export const entries = definitions.map(d => generate(d));
 
 function generate({ id, exceptions = {}, ...args }) {
+  log.info("Generating", id, args, exceptions);
 
   const definition = {
     ...args
@@ -199,6 +200,8 @@ function getSRS3(args, exceptions) {
 }
 
 function getScreeve(args, exceptions, form) {
+  log.info("getScreeve", form.name);
+  
   const { value, note, ...excRest } = exceptions;
   
   if (note) {
@@ -233,6 +236,8 @@ function getScreeve(args, exceptions, form) {
 }
 
 function getForm(args, exceptions, form, person_s) {
+  log.info("getForm", person_s);
+  
   const { value, note, ...excRest } = exceptions;
   
   if (note) {
