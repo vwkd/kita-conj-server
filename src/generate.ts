@@ -10,6 +10,7 @@ import getAOR from "./forms/aor.ts";
 import getOPT from "./forms/opt.ts";
 import getPERF from "./forms/perf.ts";
 import getPLUPERF from "./forms/pluperf.ts";
+import getPERFSUBJ from "./forms/perfsubj.ts";
 
 export const entries = definitions.map(d => generate(d));
 
@@ -178,9 +179,7 @@ function getSRS3(args, exceptions) {
   
   const PLUPERF = getScreeve(args, { ...excAll, ...excPLUPERF }, getPLUPERF);
   
-  const PLACEHOLDER = getScreeve(args, {}, getPlaceholder);
-  // todo: placeholder, fill with actual screeves
-  const PERFSUBJ = PLACEHOLDER;
+  const PERFSUBJ = getScreeve(args, { ...excAll, ...excPERFSUBJ }, getPERFSUBJ);
   
   return {
     PERF,
