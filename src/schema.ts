@@ -277,13 +277,7 @@ const SRS2Type = new GraphQLObjectType({
     AOR: {
       type: new GraphQLNonNull(screeveOrExceptionType),
     },
-    AORIMPF: {
-      type: new GraphQLNonNull(screeveOrExceptionType),
-    },
     OPT: {
-      type: new GraphQLNonNull(screeveOrExceptionType),
-    },
-    OPTIMPF: {
       type: new GraphQLNonNull(screeveOrExceptionType),
     },
   }
@@ -311,19 +305,10 @@ const SRS3Type = new GraphQLObjectType({
     PERF: {
       type: new GraphQLNonNull(screeveOrExceptionType),
     },
-    PERFIMPF: {
-      type: new GraphQLNonNull(screeveOrExceptionType),
-    },
     PLUPERF: {
       type: new GraphQLNonNull(screeveOrExceptionType),
     },
-    PLUPERFIMPF: {
-      type: new GraphQLNonNull(screeveOrExceptionType),
-    },
     PERFSUBJ: {
-      type: new GraphQLNonNull(screeveOrExceptionType),
-    },
-    PERFSUBJIMPF: {
       type: new GraphQLNonNull(screeveOrExceptionType),
     },
   }

@@ -98,18 +98,13 @@ union SRS2OrException = SRS2 | Exception
 
 type SRS2 {
   AOR: ScreeveOrException!
-  AORIMPF: ScreeveOrException!
   OPT: ScreeveOrException!
-  OPTIMPF: ScreeveOrException!
 }
 
 union SRS3OrException = SRS3 | Exception
 
 type SRS3 {
   PERF: ScreeveOrException!
-  PERFIMPF: ScreeveOrException!
   PLUPERF: ScreeveOrException!
-  PLUPERFIMPF: ScreeveOrException!
   PERFSUBJ: ScreeveOrException!
-  PERFSUBJIMPF: ScreeveOrException!
 }

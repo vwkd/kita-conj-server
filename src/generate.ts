@@ -7,9 +7,7 @@ import getFUT from "./forms/fut.ts";
 import getCOND from "./forms/cond.ts";
 import getFUTSUBJ from "./forms/futsubj.ts";
 import getAOR from "./forms/aor.ts";
-import getAORIMPF from "./forms/aorimpf.ts";
 import getOPT from "./forms/opt.ts";
-import getOPTIMPF from "./forms/optimpf.ts";
 import getPERF from "./forms/perf.ts";
 
 export const entries = definitions.map(d => generate(d));
@@ -151,21 +149,15 @@ function getSRS2(args, exceptions) {
     };
   }
   
-  const { AOR: excAOR, AORIMPF: excAORIMPF, OPT: excOPT, OPTIMPF: excOPTIMPF, ...excAll } = excRest;
+  const { AOR: excAOR, OPT: excOPT, ...excAll } = excRest;
   
   const AOR = getScreeve(args, { ...excAll, ...excAOR }, getAOR);
   
-  const AORIMPF = getScreeve(args, { ...excAll, ...excAORIMPF }, getAORIMPF);
-  
   const OPT = getScreeve(args, { ...excAll, ...excOPT }, getOPT);
-  
-  const OPTIMPF = getScreeve(args, { ...excAll, ...excOPTIMPF }, getOPTIMPF);
   
   return {
     AOR,
-    AORIMPF,
     OPT,
-    OPTIMPF,
   };
 }
 
@@ -179,25 +171,19 @@ function getSRS3(args, exceptions) {
     };
   }
   
-  const { PERF: excPERF, PERFIMPF: excPERFIMPF, PLUPERF: excPLUPERF, PLUPERFIMPF: excPLUPERFIMPF, PERFSUBJ: excPERFSUBJ, PERFSUBJIMPF: excPERFSUBJIMPF, ...excAll } = excRest;
+  const { PERF: excPERF, PLUPERF: excPLUPERF, PERFSUBJ: excPERFSUBJ, ...excAll } = excRest;
   
   const PERF = getScreeve(args, { ...excAll, ...excPERF }, getPERF);
   
   const PLACEHOLDER = getScreeve(args, {}, getPlaceholder);
   // todo: placeholder, fill with actual screeves
-  const PERFIMPF = PLACEHOLDER;
   const PLUPERF = PLACEHOLDER;
-  const PLUPERFIMPF = PLACEHOLDER;
   const PERFSUBJ = PLACEHOLDER;
-  const PERFSUBJIMPF = PLACEHOLDER;
   
   return {
     PERF,
-    PERFIMPF,
     PLUPERF,
-    PLUPERFIMPF,
     PERFSUBJ,
-    PERFSUBJIMPF,
   };
 }
 
