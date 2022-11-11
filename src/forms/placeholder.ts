@@ -1,7 +1,7 @@
 import { Form } from "./utils.ts";
 
 export default function getPlaceholder(args, exceptions, person_s) {
-  const form = Form();
+  const form = Form("S1", "S1", "DIRECT");
   
   form.preverb = null;
   form.person1 = null;

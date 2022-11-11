@@ -58,7 +58,6 @@ const componentOrExceptionType = new GraphQLUnionType({
 const formType = new GraphQLObjectType({
   name: "Form",
   fields: {
-    // todo: add object persons, add other verb form components
     preverb: {
       type: new GraphQLNonNull(componentOrExceptionType),
     },
@@ -99,8 +98,8 @@ const formOrExceptionType = new GraphQLUnionType({
   }
 });
 
-const screeveType = new GraphQLObjectType({
-  name: "Screeve",
+const subjectType = new GraphQLObjectType({
+  name: "Subject",
   fields: {
     S1: {
       type: new GraphQLNonNull(formOrExceptionType),
@@ -119,6 +118,46 @@ const screeveType = new GraphQLObjectType({
     },
     P3: {
       type: new GraphQLNonNull(formOrExceptionType),
+    },
+  }
+});
+
+const subjectOrExceptionType = new GraphQLUnionType({
+  name: "SubjectOrException",
+  types: [
+    subjectType,
+    exceptionType,
+  ],
+  resolveType(value) {
+    if (value.S1) {
+      return "Subject";
+    }
+    if (value.note) {
+      return "Exception";
+    }
+  }
+});
+
+const screeveType = new GraphQLObjectType({
+  name: "Screeve",
+  fields: {
+    S1: {
+      type: new GraphQLNonNull(subjectOrExceptionType),
+    },
+    S2: {
+      type: new GraphQLNonNull(subjectOrExceptionType),
+    },
+    S3: {
+      type: new GraphQLNonNull(subjectOrExceptionType),
+    },
+    P1: {
+      type: new GraphQLNonNull(subjectOrExceptionType),
+    },
+    P2: {
+      type: new GraphQLNonNull(subjectOrExceptionType),
+    },
+    P3: {
+      type: new GraphQLNonNull(subjectOrExceptionType),
     },
   }
 });
@@ -351,6 +390,9 @@ const definitionType = new GraphQLObjectType({
     },
     thema: {
       type: GraphQLString,
+    },
+    obj: {
+      type: new GraphQLNonNull(GraphQLString),
     },
   }
 });

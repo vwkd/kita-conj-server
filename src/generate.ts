@@ -213,17 +213,17 @@ function getScreeve(args, exceptions, form) {
   
   const { S1: excS1, S2: excS2, S3: excS3, P1: excP1, P2: excP2, P3: excP3, ...excAll } = excRest;
   
-  const S1 = getForm(args, { ...excAll, ...excS1 }, form, "S1");
+  const S1 = getSubject(args, { ...excAll, ...excS1 }, form, "S1");
   
-  const S2 = getForm(args, { ...excAll, ...excS2 }, form, "S2");
+  const S2 = getSubject(args, { ...excAll, ...excS2 }, form, "S2");
   
-  const S3 = getForm(args, { ...excAll, ...excS3 }, form, "S3");
+  const S3 = getSubject(args, { ...excAll, ...excS3 }, form, "S3");
   
-  const P1 = getForm(args, { ...excAll, ...excP1 }, form, "P1");
+  const P1 = getSubject(args, { ...excAll, ...excP1 }, form, "P1");
   
-  const P2 = getForm(args, { ...excAll, ...excP2 }, form, "P2");
+  const P2 = getSubject(args, { ...excAll, ...excP2 }, form, "P2");
   
-  const P3 = getForm(args, { ...excAll, ...excP3 }, form, "P3");
+  const P3 = getSubject(args, { ...excAll, ...excP3 }, form, "P3");
   
   return {
     S1,
@@ -235,9 +235,7 @@ function getScreeve(args, exceptions, form) {
   };
 }
 
-function getForm(args, exceptions, form, person_s) {
-  log.info("getForm", person_s);
-  
+function getSubject(args, exceptions, form, person_o) {
   const { value, note, ...excRest } = exceptions;
   
   if (note) {
@@ -247,7 +245,49 @@ function getForm(args, exceptions, form, person_s) {
     };
   }
   
-  const { preverb, person1, version, root, thema, modus, person2 } = form(args, excRest, person_s);
+  const { S1: excS1, S2: excS2, S3: excS3, P1: excP1, P2: excP2, P3: excP3, ...excAll } = excRest;
+  
+  const S1 = getForm(args, { ...excAll, ...excS1 }, form, "S1", person_o);
+  
+  const S2 = getForm(args, { ...excAll, ...excS2 }, form, "S2", person_o);
+  
+  const S3 = getForm(args, { ...excAll, ...excS3 }, form, "S3", person_o);
+  
+  const P1 = getForm(args, { ...excAll, ...excP1 }, form, "P1", person_o);
+  
+  const P2 = getForm(args, { ...excAll, ...excP2 }, form, "P2", person_o);
+  
+  const P3 = getForm(args, { ...excAll, ...excP3 }, form, "P3", person_o);
+  
+  return {
+    S1,
+    S2,
+    S3,
+    P1,
+    P2,
+    P3,
+  };
+}
+
+function getForm(args, exceptions, form, person_s, person_o) {
+  log.info("getForm", person_s, person_o);
+  const { value, note, ...excRest } = exceptions;
+  
+  if (note) {
+    return {
+      value,
+      note,
+    };
+  }
+  
+  if ((person_o.slice(-1) == "1" || person_o.slice(-1) == "2") && person_o.slice(-1) == person_s.slice(-1)) {
+    return {
+      value: null,
+      note: "G1",
+    };
+  }
+  
+  const { preverb, person1, version, root, thema, modus, person2 } = form(args, excRest, person_s, person_o);
   
   return {
     preverb,
