@@ -6,13 +6,13 @@ const OBJ = ["DIRECT", "INDIRECT"];
 
 const PREVERB = [null, "მი", "მო", "მიმო", "წა", "წამო", "შე", "შემო", "გა", "გამო", "ა", "ამო", "ჩა", "ჩამო", "და", "გადა", "გადმო"];
 
-const VERSION = ["NEUTRAL1", "NEUTRAL2", "SUBJECTIVE", "OBJECTIVE", "SUPERESSIVE"];
+const VERSION = ["NEUTRAL1", "NEUTRAL2", "SUBJECTIVE", "OBJECTIVE", "SUPERESSIVE", "PSEUDO_E"];
 
 const THEMA = [null, "ი", "ავ", "ამ", "ებ", "ობ"];
 
 const MODUS = [null, "დ"];
 
-const PERFECT2 = [null, "ი"];
+const PERFECT2 = [null, "ი", "ინ"];
 
 export const VOWELS = ["ა", "ე", "ი", "ო", "უ"];
 
@@ -33,6 +33,8 @@ export function select_version(version, person_o) {
       : "ი"
     : version == "SUPERESSIVE"
     ? "ა"
+    : version == "PSEUDO_E"
+    ? "ე"
     : error(`Invalid version "${version}"`);
 }
 
