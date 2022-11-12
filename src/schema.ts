@@ -1,17 +1,25 @@
-import { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLID, GraphQLNonNull, GraphQLInt, GraphQLUnionType, log } from "./deps.ts";
-import { database } from "./database.ts"
+import {
+  GraphQLID,
+  GraphQLInt,
+  GraphQLNonNull,
+  GraphQLObjectType,
+  GraphQLSchema,
+  GraphQLString,
+  GraphQLUnionType,
+  log,
+} from "./deps.ts";
+import { database } from "./database.ts";
 
 // --------- RESOLVER ---------
 
 function entryResolver(_, { id }) {
-
   // TODO: assert ID is provided, is ID type
   // TODO: error handling entry with id does not exist
-  
+
   const entry = database.entry(id);
-  
+
   log.debug("database entry:", entry);
-  
+
   return entry;
 }
 
@@ -28,7 +36,7 @@ const exceptionType = new GraphQLObjectType({
     note: {
       type: new GraphQLNonNull(GraphQLString),
     },
-  }
+  },
 });
 
 const componentType = new GraphQLObjectType({
@@ -37,7 +45,7 @@ const componentType = new GraphQLObjectType({
     value: {
       type: GraphQLString,
     },
-  }
+  },
 });
 
 const componentOrExceptionType = new GraphQLUnionType({
@@ -52,7 +60,7 @@ const componentOrExceptionType = new GraphQLUnionType({
     } else {
       return "Component";
     }
-  }
+  },
 });
 
 const formType = new GraphQLObjectType({
@@ -82,7 +90,7 @@ const formType = new GraphQLObjectType({
     person2: {
       type: new GraphQLNonNull(componentOrExceptionType),
     },
-  }
+  },
 });
 
 const formOrExceptionType = new GraphQLUnionType({
@@ -98,7 +106,7 @@ const formOrExceptionType = new GraphQLUnionType({
     if (value.note) {
       return "Exception";
     }
-  }
+  },
 });
 
 const subjectType = new GraphQLObjectType({
@@ -122,7 +130,7 @@ const subjectType = new GraphQLObjectType({
     P3: {
       type: new GraphQLNonNull(formOrExceptionType),
     },
-  }
+  },
 });
 
 const subjectOrExceptionType = new GraphQLUnionType({
@@ -138,7 +146,7 @@ const subjectOrExceptionType = new GraphQLUnionType({
     if (value.note) {
       return "Exception";
     }
-  }
+  },
 });
 
 const screeveType = new GraphQLObjectType({
@@ -162,7 +170,7 @@ const screeveType = new GraphQLObjectType({
     P3: {
       type: new GraphQLNonNull(subjectOrExceptionType),
     },
-  }
+  },
 });
 
 const screeveOrExceptionType = new GraphQLUnionType({
@@ -178,7 +186,7 @@ const screeveOrExceptionType = new GraphQLUnionType({
     if (value.note) {
       return "Exception";
     }
-  }
+  },
 });
 
 const GRP1Type = new GraphQLObjectType({
@@ -193,7 +201,7 @@ const GRP1Type = new GraphQLObjectType({
     PRSSUBJ: {
       type: new GraphQLNonNull(screeveOrExceptionType),
     },
-  }
+  },
 });
 
 const GRP1OrExceptionType = new GraphQLUnionType({
@@ -209,7 +217,7 @@ const GRP1OrExceptionType = new GraphQLUnionType({
     if (value.note) {
       return "Exception";
     }
-  }
+  },
 });
 
 const GRP2Type = new GraphQLObjectType({
@@ -224,7 +232,7 @@ const GRP2Type = new GraphQLObjectType({
     FUTSUBJ: {
       type: new GraphQLNonNull(screeveOrExceptionType),
     },
-  }
+  },
 });
 
 const GRP2OrExceptionType = new GraphQLUnionType({
@@ -240,7 +248,7 @@ const GRP2OrExceptionType = new GraphQLUnionType({
     if (value.note) {
       return "Exception";
     }
-  }
+  },
 });
 
 const SRS1Type = new GraphQLObjectType({
@@ -252,7 +260,7 @@ const SRS1Type = new GraphQLObjectType({
     GRP2: {
       type: new GraphQLNonNull(GRP2OrExceptionType),
     },
-  }
+  },
 });
 
 const SRS1OrExceptionType = new GraphQLUnionType({
@@ -268,7 +276,7 @@ const SRS1OrExceptionType = new GraphQLUnionType({
     if (value.note) {
       return "Exception";
     }
-  }
+  },
 });
 
 const SRS2Type = new GraphQLObjectType({
@@ -280,7 +288,7 @@ const SRS2Type = new GraphQLObjectType({
     OPT: {
       type: new GraphQLNonNull(screeveOrExceptionType),
     },
-  }
+  },
 });
 
 const SRS2OrExceptionType = new GraphQLUnionType({
@@ -296,7 +304,7 @@ const SRS2OrExceptionType = new GraphQLUnionType({
     if (value.note) {
       return "Exception";
     }
-  }
+  },
 });
 
 const SRS3Type = new GraphQLObjectType({
@@ -311,7 +319,7 @@ const SRS3Type = new GraphQLObjectType({
     PERFSUBJ: {
       type: new GraphQLNonNull(screeveOrExceptionType),
     },
-  }
+  },
 });
 
 const SRS3OrExceptionType = new GraphQLUnionType({
@@ -327,7 +335,7 @@ const SRS3OrExceptionType = new GraphQLUnionType({
     if (value.note) {
       return "Exception";
     }
-  }
+  },
 });
 
 const tableType = new GraphQLObjectType({
@@ -342,7 +350,7 @@ const tableType = new GraphQLObjectType({
     SRS3: {
       type: new GraphQLNonNull(SRS3OrExceptionType),
     },
-  }
+  },
 });
 
 const tableOrExceptionType = new GraphQLUnionType({
@@ -358,7 +366,7 @@ const tableOrExceptionType = new GraphQLUnionType({
     if (value.note) {
       return "Exception";
     }
-  }
+  },
 });
 
 const definitionType = new GraphQLObjectType({
@@ -385,7 +393,7 @@ const definitionType = new GraphQLObjectType({
     obj: {
       type: new GraphQLNonNull(GraphQLString),
     },
-  }
+  },
 });
 
 const entryType = new GraphQLObjectType({
@@ -400,7 +408,7 @@ const entryType = new GraphQLObjectType({
     value: {
       type: new GraphQLNonNull(tableOrExceptionType),
     },
-  }
+  },
 });
 
 const queryType = new GraphQLObjectType({
