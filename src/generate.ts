@@ -1,5 +1,4 @@
 import { definitions, log } from "./deps.ts";
-import getPlaceholder from "./forms/placeholder.ts";
 import getPRS from "./forms/prs.ts";
 import getIMPF from "./forms/impf.ts";
 import getPRSSUBJ from "./forms/prssubj.ts";
