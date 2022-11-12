@@ -13,6 +13,7 @@ type Definition {
   preverb: String
   version: String!
   root: String!
+  root_srs2: String
   thema: String
   obj: String!
 }

@@ -3,8 +3,8 @@ import { select_person1_s, select_person1_io, merge_person1 } from "./prs.ts";
 import { checkIsStrong } from "./aor.ts";
 import { select_person2_io, merge_person2 } from "./perf.ts";
 
-function select_person2_s(person_s, { root, note, thema }) {
-  const isStrong = checkIsStrong(root, note, thema);
+function select_person2_s(person_s, { root, root_srs2, thema }) {
+  const isStrong = checkIsStrong(root, root_srs2, thema);
 
   return person_s == "S1"
     ? isStrong ? "ა" : "ო"
@@ -38,11 +38,11 @@ export default function getPERFSUBJ(args, person_s, person_o) {
   
   const stem = form.stemValue;
   const root = form.root.value;
-  const note = form.root.note;
+  const root_srs2 = args.root_srs2;
   const thema = form.thema.value;
   const pz1_s = select_person1_s(person_o);
   const pz1_io = select_person1_io(person_s, { stem });
-  const pz2_s = select_person2_s(person_o, { root, note, thema });
+  const pz2_s = select_person2_s(person_o, { root, root_srs2, thema });
   const pz2_io = select_person2_io(person_s);
   form.person1 = merge_person1(pz1_s, pz1_io, person_o, person_s, obj);
   form.person2 = merge_person2(pz2_s, pz2_io, person_o, person_s);

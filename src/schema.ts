@@ -376,6 +376,9 @@ const definitionType = new GraphQLObjectType({
     root: {
       type: new GraphQLNonNull(GraphQLString),
     },
+    root_srs2: {
+      type: GraphQLString,
+    },
     thema: {
       type: GraphQLString,
     },
