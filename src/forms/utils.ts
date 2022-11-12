@@ -1,4 +1,4 @@
-import { log } from "../deps.ts";
+import { log, VOWELS } from "../deps.ts";
 
 const PERSON = ["S1", "S2", "S3", "P1", "P2", "P3"];
 
@@ -13,12 +13,6 @@ const THEMA = [null, "ი", "ავ", "ამ", "ებ", "ობ"];
 const MODUS = [null, "დ"];
 
 const PERFECT2 = [null, "ი", "ინ"];
-
-export const VOWELS = ["ა", "ე", "ი", "ო", "უ"];
-
-export const T_SOUNDS = ["დ", "თ", "ტ", "ძ", "ც", "წ", "ჯ", "ჩ", "ჭ"];
-
-export const SOFT_SOUNDS = ["ბ", "ფ", "ზ", "ს", "ჟ", "შ", "ღ", "ხ", "ლ", "რ", "მ", "ნ", "ვ"];
 
 export function select_version(version, person_o) {
   return version == "NEUTRAL1"

@@ -1,5 +1,5 @@
-import { log } from "../deps.ts";
-import { error, Form, VOWELS, SOFT_SOUNDS, T_SOUNDS } from "./utils.ts";
+import { log, VOWELS, T_SOUNDS, SOFT_SOUNDS } from "../deps.ts";
+import { error, Form } from "./utils.ts";
 
 Object.defineProperty(String.prototype, "startsWithSome", {
     value: function(arr) {
