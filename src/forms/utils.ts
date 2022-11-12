@@ -1,18 +1,22 @@
 import { log, VOWELS } from "../deps.ts";
 
-const PERSON = ["S1", "S2", "S3", "P1", "P2", "P3"];
-
-const OBJ = ["DIRECT", "INDIRECT"];
+const CATEGORY = [1, 2, 3, 4, 5];
 
 const PREVERB = [null, "მი", "მო", "მიმო", "წა", "წამო", "შე", "შემო", "გა", "გამო", "ა", "ამო", "ჩა", "ჩამო", "და", "გადა", "გადმო"];
 
 const VERSION = ["NEUTRAL1", "NEUTRAL2", "SUBJECTIVE", "OBJECTIVE", "SUPERESSIVE", "PSEUDO_E"];
 
+const ROOT_SRS2 = [null, "R1", "R2", "R3", "R4", "R5", "R6"];
+
 const THEMA = [null, "ი", "ავ", "ამ", "ებ", "ობ"];
+
+const OBJ = ["DIRECT", "INDIRECT"];
 
 const MODUS = [null, "დ"];
 
 const PERFECT2 = [null, "ი", "ინ"];
+
+const PERSON = ["S1", "S2", "S3", "P1", "P2", "P3"];
 
 export function select_version(version, person_o) {
   return version == "NEUTRAL1"
@@ -39,9 +43,9 @@ export function error(msg) {
 export function Form(person_s, person_o, obj) {
   log.debug("Creating form:", person_s, person_o, obj);
   
-  validateArgPerson(person_s);
-  validateArgPerson(person_o);
-  validateArgObject(obj);
+  validatePerson(person_s);
+  validatePerson(person_o);
+  validateObj(obj);
 
   const preverb = {
   };
@@ -79,7 +83,7 @@ export function Form(person_s, person_o, obj) {
       return person1;
     },
     set person1(value) {
-      validatePerson(value);
+      validatePersonX(value);
       person1.value = value;
     },
     get version() {
@@ -122,7 +126,7 @@ export function Form(person_s, person_o, obj) {
       return person2;
     },
     set person2(value) {
-      validatePerson(value);
+      validatePersonX(value);
       person2.value = value;
     },
     get stemValue() {
@@ -131,23 +135,53 @@ export function Form(person_s, person_o, obj) {
   };
 }
 
-function validateArgPerson(value) {
-  if (typeof value != "string") {
-    throw new Error("person must be a string");
+export function validateArgs({ category, preverb, version, root,  root_srs2, thema, obj }) {
+  validateCategory(category);
+  validatePreverb(preverb);
+  validateObj(obj);
+  validateVersion(version, obj);
+  validateRoot(root);
+  validateRootSrs2(root_srs2);
+  validateThema(thema);
+}
+
+function validateCategory(value) {
+  if (typeof value != "number") {
+    throw new Error("category must be a number");
   }
   
-  if (!PERSON.some(v => v == value)) {
-    throw new Error(`person must be one of '${PERSON.join("', '")}'`);
+  if (!CATEGORY.some(v => v == value)) {
+    throw new Error(`category must be one of '${CATEGORY.join("', '")}'`);
   }
 }
 
-function validateArgObject(value) {
+function validateObj(value) {
   if (typeof value != "string") {
     throw new Error("obj must be a string");
   }
   
   if (!OBJ.some(v => v == value)) {
     throw new Error(`obj must be one of '${OBJ.join("', '")}'`);
+  }
+}
+
+function validateRootSrs2(value) {
+  if (typeof value != "string" && value !== null) {
+    throw new Error("root_srs2 must be a string or null");
+  }
+  
+  if (!ROOT_SRS2.some(v => v == value)) {
+    throw new Error(`root_srs2 must be one of '${ROOT_SRS2.join("', '")}'`);
+  }
+}
+
+function validatePerson(value) {
+  if (typeof value != "string") {
+    throw new Error("person must be a string");
+  }
+  
+  if (!PERSON.some(v => v == value)) {
+    throw new Error(`person must be one of '${PERSON.join("', '")}'`);
   }
 }
 
@@ -219,7 +253,7 @@ function validatePerfect2(value) {
   }
 }
 
-function validatePerson(value) {
+function validatePersonX(value) {
   if (typeof value != "string" && value !== null) {
     throw new Error("person must be a string or null");
   }
