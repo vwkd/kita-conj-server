@@ -20,17 +20,13 @@ export function select_person2_s(person_s, { root, note, thema }) {
     : error(`Invalid person_s "${person_s}"`);
 }
 
-export default function getOPT(args, exceptions, person_s, person_o) {
+export default function getOPT(args, person_s, person_o) {
   const obj = args.obj;
   const form = Form(person_s, person_o, obj);
   
   form.preverb = args.preverb;
   form.version = args.version;
   form.root = args.root;
-  
-  form.preverbExc = exceptions.preverb;
-  form.versionExc = exceptions.version;
-  form.rootExc = exceptions.root;
   
   const stem = form.stemValue;
   const root = form.root.value;
@@ -43,16 +39,9 @@ export default function getOPT(args, exceptions, person_s, person_o) {
   form.person1 = merge_person1(pz1_s, pz1_o, person_s, person_o, obj);
   form.person2 = merge_person2(pz2_s, pz2_o, person_s, person_o);
   
-  form.person1Exc = exceptions.person1;
-  form.person2Exc = exceptions.person2;
-  
   form.thema = null;
   form.modus = null;
   form.perfect2 = null;
-  
-  form.themaExc = exceptions.thema;
-  form.modusExc = exceptions.modus;
-  form.perfect2Exc = exceptions.perfect2;
   
   return form;
 }

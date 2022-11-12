@@ -259,7 +259,7 @@ function getSubject(args, exceptions, form, person_o) {
 
 function getForm(args, exceptions, form, person_s, person_o) {
   log.info("getForm", person_s, person_o);
-  const { value, note, ...excRest } = exceptions;
+  const { value, note } = exceptions;
   
   if (note) {
     return {
@@ -275,7 +275,7 @@ function getForm(args, exceptions, form, person_s, person_o) {
     };
   }
   
-  const { preverb, person1, version, root, thema, modus, perfect2, person2 } = form(args, excRest, person_s, person_o);
+  const { preverb, person1, version, root, thema, modus, perfect2, person2 } = form(args, person_s, person_o);
   
   return {
     preverb,

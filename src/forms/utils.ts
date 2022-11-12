@@ -80,16 +80,6 @@ export function Form(person_s, person_o, obj) {
     set preverb(value) {
       validatePreverb(value);
       preverb.value = value;
-      preverb.note = undefined;
-    },
-    set preverbExc(patch) {
-      if (patch) {
-        const { value, note } = patch;
-        validatePreverb(value);
-        validateNote(note);
-        preverb.value = value;
-        preverb.note = note;
-      }
     },
     get person1() {
       return person1;
@@ -97,15 +87,6 @@ export function Form(person_s, person_o, obj) {
     set person1(value) {
       validatePerson(value);
       person1.value = value;
-      person1.note = undefined;
-    },
-    set person1Exc(patch) {
-      if (patch) {
-        const { value, note } = patch;
-        validatePerson(value);
-        person1.value = value;
-        person1.note = note;
-      }
     },
     get version() {
       return version;
@@ -114,17 +95,6 @@ export function Form(person_s, person_o, obj) {
       validateVersion(value, obj);
       version.valueRaw = value;
       version.value = select_version(value, person_o);
-      version.note = undefined;
-    },
-    set versionExc(patch) {
-      if (patch) {
-        const { value, note } = patch;
-        validateVersion(value, obj);
-        validateNote(note);
-        version.valueRaw = value;
-        version.value = select_version(value, person_o);
-        version.note = note;
-      }
     },
     get root() {
       return root;
@@ -132,16 +102,6 @@ export function Form(person_s, person_o, obj) {
     set root(value) {
       validateRoot(value);
       root.value = value;
-      root.note = undefined;
-    },
-    set rootExc(patch) {
-      if (patch) {
-        const { value, note } = patch;
-        validateRoot(value);
-        validateNote(note);
-        root.value = value;
-        root.note = note;
-      }
     },
     get thema() {
       return thema;
@@ -149,16 +109,6 @@ export function Form(person_s, person_o, obj) {
     set thema(value) {
       validateThema(value);
       thema.value = value;
-      thema.note = undefined;
-    },
-    set themaExc(patch) {
-      if (patch) {
-        const { value, note } = patch;
-        validateThema(value);
-        validateNote(note);
-        thema.value = value;
-        thema.note = note;
-      }
     },
     get modus() {
       return modus;
@@ -166,16 +116,6 @@ export function Form(person_s, person_o, obj) {
     set modus(value) {
       validateModus(value);
       modus.value = value;
-      modus.note = undefined;
-    },
-    set modusExc(patch) {
-      if (patch) {
-        const { value, note } = patch;
-        validateModus(value);
-        validateNote(note);
-        modus.value = value;
-        modus.note = note;
-      }
     },
     get perfect2() {
       return perfect2;
@@ -183,16 +123,6 @@ export function Form(person_s, person_o, obj) {
     set perfect2(value) {
       validatePerfect2(value);
       perfect2.value = value;
-      perfect2.note = undefined;
-    },
-    set perfect2Exc(patch) {
-      if (patch) {
-        const { value, note } = patch;
-        validatePerfect2(value);
-        validateNote(note);
-        perfect2.value = value;
-        perfect2.note = note;
-      }
     },
     get person2() {
       return person2;
@@ -200,15 +130,6 @@ export function Form(person_s, person_o, obj) {
     set person2(value) {
       validatePerson(value);
       person2.value = value;
-      person2.note = undefined;
-    },
-    set person2Exc(patch) {
-      if (patch) {
-        const { value, note } = patch;
-        validatePerson(value);
-        person2.value = value;
-        person2.note = note;
-      }
     },
     get stemValue() {
       return [version.value, root.value, thema.value, modus.value, perfect2.value].filter(Boolean).join("");

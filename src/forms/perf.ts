@@ -90,7 +90,7 @@ export function merge_person2(pz_s, pz_o, person_s, person_o) {
   }
 }
 
-export default function getPERF(args, exceptions, person_s, person_o) {
+export default function getPERF(args, person_s, person_o) {
   const obj = "INDIRECT";
   const form = Form(person_o, person_s, obj);
   
@@ -105,13 +105,6 @@ export default function getPERF(args, exceptions, person_s, person_o) {
   // todo: select perfect2, maybe better name for suffix if no accompanying prefix perfect1 exists
   form.perfect2 = "ი";
   
-  form.preverbExc = exceptions.preverb;
-  form.versionExc = exceptions.version_SRS3;
-  form.rootExc = exceptions.root;
-  form.themaExc = exceptions.thema;
-  form.modusExc = exceptions.modus;
-  form.perfect2Exc = exceptions.perfect2;
-  
   const stem = form.stemValue;
   const thema = form.thema.value;
   const pz1_s = select_person1_s(person_o);
@@ -120,9 +113,6 @@ export default function getPERF(args, exceptions, person_s, person_o) {
   const pz2_io = select_person2_io(person_s);
   form.person1 = merge_person1(pz1_s, pz1_io, person_o, person_s, obj);
   form.person2 = merge_person2(pz2_s, pz2_io, person_o, person_s);
-  
-  form.person1Exc = exceptions.person1;
-  form.person2Exc = exceptions.person2;
   
   return form;
 }
