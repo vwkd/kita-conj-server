@@ -1,7 +1,8 @@
 import { Form } from "./utils.ts";
 import { merge_person1, select_person1_io, select_person1_s } from "./prs.ts";
 import { checkIsStrong } from "./aor.ts";
-import { merge_person2, select_person2_io } from "./perf.ts";
+import { merge_person2, select_person2_io, select_thema } from "./perf.ts";
+import { select_perfect2, select_root } from "./pluperf.ts";
 
 function select_person2_s(person_s, { root, root_srs2, thema }) {
   const isStrong = checkIsStrong(root, root_srs2, thema);
@@ -27,19 +28,17 @@ export default function getPERFSUBJ(args, person_s, person_o) {
 
   form.preverb = args.preverb;
   form.version = "PSEUDO_E";
-  // todo: select root
-  // todo: remove leading vowel from root ?!?
-  form.root = args.root;
-  // todo: select thema
-  form.thema = args.thema;
+
+  const root = args.root;
+  const root_srs2 = args.root_srs2;
+  const thema = args.thema;
+
+  form.root = select_root(root, root_srs2, thema);
+  form.thema = select_thema(thema, root, person_s);
   form.modus = null;
-  // todo: select perfect2
-  form.perfect2 = "ინ";
+  form.perfect2 = select_perfect2(root, thema, person_s);
 
   const stem = form.stemValue;
-  const root = form.root.value;
-  const root_srs2 = args.root_srs2;
-  const thema = form.thema.value;
   const pz1_s = select_person1_s(person_o);
   const pz1_io = select_person1_io(person_s, { stem });
   const pz2_s = select_person2_s(person_o, { root, root_srs2, thema });
