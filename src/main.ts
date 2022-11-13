@@ -1,4 +1,7 @@
-import { graphql, log, serve } from "./deps.ts";
+import { serve } from "$std/http/server.ts";
+import { graphql } from "$graphql";
+import { log } from "$utils/logger.ts";
+
 import { schema } from "./schema.ts";
 
 async function handleRequest(request: Request) {

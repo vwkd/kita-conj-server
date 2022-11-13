@@ -1,4 +1,4 @@
-import { CONSONANTS, VOWELS } from "../deps.ts";
+import { CONSONANTS, VOWELS } from "$utils/constants.ts";
 import { error, Form, hasVowel } from "./utils.ts";
 import {
   merge_person1,

@@ -1,4 +1,5 @@
-import { definitions, log } from "./deps.ts";
+import { log } from "$utils/logger.ts";
+import { default as definitions } from "$definitions" assert { type: "json" };
 import getPRS from "./forms/prs.ts";
 import getIMPF from "./forms/impf.ts";
 import getPRSSUBJ from "./forms/prssubj.ts";

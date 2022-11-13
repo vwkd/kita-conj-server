@@ -1,4 +1,5 @@
-import { log, SOFT_SOUNDS, T_SOUNDS, VOWELS } from "../deps.ts";
+import { log } from "$utils/logger.ts";
+import { SOFT_SOUNDS, T_SOUNDS, VOWELS } from "$utils/constants.ts";
 import { error, Form } from "./utils.ts";
 
 Object.defineProperty(String.prototype, "startsWithSome", {

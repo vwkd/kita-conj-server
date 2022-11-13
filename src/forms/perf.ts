@@ -1,4 +1,4 @@
-import { log } from "../deps.ts";
+import { log } from "$utils/logger.ts";
 import { Form, hasVowel } from "./utils.ts";
 import { merge_person1, select_person1_io, select_person1_s } from "./prs.ts";
 import { getRootAor } from "./aor.ts";

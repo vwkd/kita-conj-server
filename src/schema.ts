@@ -1,3 +1,4 @@
+import { log } from "$utils/logger.ts";
 import {
   GraphQLID,
   GraphQLInt,
@@ -6,8 +7,8 @@ import {
   GraphQLSchema,
   GraphQLString,
   GraphQLUnionType,
-  log,
-} from "./deps.ts";
+} from "$graphql";
+
 import { database } from "./database.ts";
 
 // --------- RESOLVER ---------

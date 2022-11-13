@@ -1,4 +1,5 @@
-import { log, VOWELS } from "../deps.ts";
+import { log } from "$utils/logger.ts";
+import { VOWELS } from "$utils/constants.ts";
 
 const CATEGORY = [1, 2, 3, 4, 5];
 

@@ -1,0 +1,8 @@
+{
+  "imports": {
+    "$std/": "https://deno.land/std@0.154.0/",
+    "$graphql": "https://cdn.skypack.dev/graphql@16.6.0",
+    "$definitions": "https://raw.githubusercontent.com/vwkd/kita-conj-parser/output/vd.json",
+    "$utils/": "https://raw.githubusercontent.com/vwkd/kita-utils/c721ac460a7defbfceaff4ae062c1d4d4b1f193e/src/"
+  }
+}
