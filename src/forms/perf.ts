@@ -1,8 +1,36 @@
 import { log } from "../deps.ts";
-import { Form } from "./utils.ts";
+import { Form, hasVowel } from "./utils.ts";
 import { merge_person1, select_person1_io, select_person1_s } from "./prs.ts";
+import { getRootAor } from "./aor.ts";
 
 // beware: here name subject / object grammatically!
+
+export function select_thema(thema, root, person_s) {
+  return (thema == "ავ" || thema == "ამ")
+    ? person_s.endsWith("3") ? thema : thema.slice(1)
+    : thema == "ებ" && hasVowel(root)
+    ? thema
+    : null;
+}
+
+export function select_perfect2(thema, person_s) {
+  return (thema == "ავ" || thema == "ამ") && person_s.endsWith("3")
+    ? null
+    : "ი";
+}
+
+export function select_root(root, root_srs2, thema) {
+  const rootAorS1 = getRootAor(root, { root_srs2, thema, person_s: "S1" });
+  const rootAorS3 = getRootAor(root, { root_srs2, thema, person_s: "S3" });
+
+  return (root.slice(-2) == "ავ" || root.slice(-2) == "ამ") && thema == null
+    ? root.slice(0, -2)
+    : thema == "ებ" && !hasVowel(root)
+    ? rootAorS3
+    : thema == "ობ"
+    ? root_srs2 == "R6" ? rootAorS1 : rootAorS3
+    : root;
+}
 
 function checkIsS(thema) {
   return thema == "ავ" ? true : thema == "ამ" ? true : false;
@@ -96,17 +124,17 @@ export default function getPERF(args, person_s, person_o) {
 
   form.preverb = args.preverb;
   form.version = "OBJECTIVE";
-  // todo: select root
-  // todo: remove leading vowel from root ?!?
-  form.root = args.root;
-  // todo: select thema
-  form.thema = args.thema;
+
+  const root = args.root;
+  const root_srs2 = args.root_srs2;
+  const thema = args.thema;
+
+  form.root = select_root(root, root_srs2, thema);
+  form.thema = select_thema(thema, root, person_s);
   form.modus = null;
-  // todo: select perfect2, maybe better name for suffix if no accompanying prefix perfect1 exists
-  form.perfect2 = "ი";
+  form.perfect2 = select_perfect2(root, thema, person_s);
 
   const stem = form.stemValue;
-  const thema = form.thema.value;
   const pz1_s = select_person1_s(person_o);
   const pz1_io = select_person1_io(person_s, { stem });
   const pz2_s = select_person2_s(person_o, { thema });
