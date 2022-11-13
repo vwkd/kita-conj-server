@@ -1,7 +1,26 @@
-import { Form } from "./utils.ts";
+import { Form, hasVowel } from "./utils.ts";
 import { merge_person1, select_person1_io, select_person1_s } from "./prs.ts";
 import { checkIsO } from "./aor.ts";
-import { merge_person2, select_person2_io } from "./perf.ts";
+import {
+  merge_person2,
+  select_perfect2 as select_perfect2_perf,
+  select_person2_io,
+  select_root as select_root_perf,
+  select_thema,
+} from "./perf.ts";
+import { getRootAor } from "./aor.ts";
+
+export function select_root(root, root_srs2, thema) {
+  return thema == "ებ" && hasVowel(root)
+    ? select_root_perf(root, root_srs2, thema)
+    : getRootAor(root, { root_srs2, thema, person_s: "S3" });
+}
+
+export function select_perfect2(root, thema, person_s) {
+  return thema == "ებ" && hasVowel(root)
+    ? "ინ"
+    : select_perfect2_perf(thema, person_s);
+}
 
 function select_person2_s(person_s, { root, thema }) {
   const isO = checkIsO(root, thema);
@@ -21,24 +40,23 @@ function select_person2_s(person_s, { root, thema }) {
     : error(`Invalid person_s "${person_s}"`);
 }
 
-export default function getPERF(args, person_s, person_o) {
+export default function getPLUPERF(args, person_s, person_o) {
   const obj = "INDIRECT";
   const form = Form(person_o, person_s, obj);
 
   form.preverb = args.preverb;
   form.version = "PSEUDO_E";
-  // todo: select root
-  // todo: remove leading vowel from root ?!?
-  form.root = args.root;
-  // todo: select thema
-  form.thema = args.thema;
+
+  const root = args.root;
+  const root_srs2 = args.root_srs2;
+  const thema = args.thema;
+
+  form.root = select_root(root, root_srs2, thema);
+  form.thema = select_thema(thema, root, person_s);
   form.modus = null;
-  // todo: select perfect2
-  form.perfect2 = "ინ";
+  form.perfect2 = select_perfect2(root, thema, person_s);
 
   const stem = form.stemValue;
-  const root = form.root.value;
-  const thema = form.thema.value;
   const pz1_s = select_person1_s(person_o);
   const pz1_io = select_person1_io(person_s, { stem });
   const pz2_s = select_person2_s(person_o, { root, thema });
