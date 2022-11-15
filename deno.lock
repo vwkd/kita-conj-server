@@ -1,0 +1,27 @@
+{
+  "version": "2",
+  "remote": {
+    "https://deno.land/std@0.164.0/async/abortable.ts": "87aa7230be8360c24ad437212311c9e8d4328854baec27b4c7abb26e85515c06",
+    "https://deno.land/std@0.164.0/async/deadline.ts": "48ac998d7564969f3e6ec6b6f9bf0217ebd00239b1b2292feba61272d5dd58d0",
+    "https://deno.land/std@0.164.0/async/debounce.ts": "dc8b92d4a4fe7eac32c924f2b8d3e62112530db70cadce27042689d82970b350",
+    "https://deno.land/std@0.164.0/async/deferred.ts": "d8fb253ffde2a056e4889ef7e90f3928f28be9f9294b6505773d33f136aab4e6",
+    "https://deno.land/std@0.164.0/async/delay.ts": "0419dfc993752849692d1f9647edf13407c7facc3509b099381be99ffbc9d699",
+    "https://deno.land/std@0.164.0/async/mod.ts": "dd0a8ed4f3984ffabe2fcca7c9f466b7932d57b1864ffee148a5d5388316db6b",
+    "https://deno.land/std@0.164.0/async/mux_async_iterator.ts": "3447b28a2a582224a3d4d3596bccbba6e85040da3b97ed64012f7decce98d093",
+    "https://deno.land/std@0.164.0/async/pool.ts": "ef9eb97b388543acbf0ac32647121e4dbe629236899586c4d4311a8770fbb239",
+    "https://deno.land/std@0.164.0/async/tee.ts": "9af3a3e7612af75861308b52249e167f5ebc3dcfc8a1a4d45462d96606ee2b70",
+    "https://deno.land/std@0.164.0/http/server.ts": "e99c1bee8a3f6571ee4cdeb2966efad465b8f6fe62bec1bdb59c1f007cc4d155",
+    "https://raw.githubusercontent.com/vwkd/kita-conj-parser/output/vd.json": "520793200ed2ce18505c7e4c45452c5c747cad5d9c2ae9d3b6c1b654d9d21e9c",
+    "https://raw.githubusercontent.com/vwkd/kita-utils/c721ac460a7defbfceaff4ae062c1d4d4b1f193e/src/constants.ts": "33242c3313d81f9a7b357932e3e69d4b33df716df1105f9f7182f48830f73b87",
+    "https://raw.githubusercontent.com/vwkd/kita-utils/c721ac460a7defbfceaff4ae062c1d4d4b1f193e/src/logger.ts": "64d047ccc3a35f41bdcfc11aaf0168920e6073394359334e6e45b0dd8a0692cf"
+  },
+  "npm": {
+    "specifiers": { "graphql@16.6.0": "graphql@16.6.0" },
+    "packages": {
+      "graphql@16.6.0": {
+        "integrity": "sha512-KPIBPDlW7NxrbT/eh4qPXz5FiFdL5UbaA0XUNz2Rp3Z3hqBSkbj0GVjwFDztsWVauZUWsbKHgMg++sk8UX0bkw==",
+        "dependencies": {}
+      }
+    }
+  }
+}
